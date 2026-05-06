@@ -1,0 +1,7 @@
+{"time":"2026-03-03T16:23:59.489357048+08:00","level":"INFO","msg":"main: starting server","port-filename":"/tmp/tmpnlivg_lx/port-314866.txt","pid":314866,"log-level":0,"disable-analytics":false,"shutdown-on-parent-exit":false,"enable-dcgm-profiling":false}
+{"time":"2026-03-03T16:23:59.491543793+08:00","level":"INFO","msg":"Will exit if parent process dies.","ppid":314866}
+{"time":"2026-03-03T16:23:59.491543718+08:00","level":"INFO","msg":"server is running","addr":{"IP":"127.0.0.1","Port":44159,"Zone":""}}
+{"time":"2026-03-03T16:23:59.680246213+08:00","level":"INFO","msg":"connection: ManageConnectionData: new connection created","id":"127.0.0.1:42610"}
+{"time":"2026-03-03T16:24:01.882834999+08:00","level":"INFO","msg":"handleInformInit: received","streamId":"ps46ppod","id":"127.0.0.1:42610"}
+{"time":"2026-03-03T16:24:01.987565829+08:00","level":"INFO","msg":"handleInformInit: stream started","streamId":"ps46ppod","id":"127.0.0.1:42610"}
+{"time":"2026-03-03T16:24:03.500055592+08:00","level":"INFO","msg":"Parent process exited, terminating service process."}

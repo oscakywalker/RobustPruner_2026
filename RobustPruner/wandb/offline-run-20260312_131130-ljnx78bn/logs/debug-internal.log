@@ -1,0 +1,8 @@
+{"time":"2026-03-12T13:11:30.436003311+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/fjh/GlimpsePrune_2/wandb/offline-run-20260312_131130-ljnx78bn/logs/debug-core.log"}
+{"time":"2026-03-12T13:11:30.537986177+08:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2026-03-12T13:11:30.538055747+08:00","level":"INFO","msg":"created new stream","id":"ljnx78bn"}
+{"time":"2026-03-12T13:11:30.53806927+08:00","level":"INFO","msg":"stream: started","id":"ljnx78bn"}
+{"time":"2026-03-12T13:11:30.538092662+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"ljnx78bn"}
+{"time":"2026-03-12T13:11:30.538125666+08:00","level":"INFO","msg":"handler: started","stream_id":"ljnx78bn"}
+{"time":"2026-03-12T13:11:30.538097096+08:00","level":"INFO","msg":"sender: started","stream_id":"ljnx78bn"}
+{"time":"2026-03-12T13:11:30.540030887+08:00","level":"INFO","msg":"Starting system monitor"}

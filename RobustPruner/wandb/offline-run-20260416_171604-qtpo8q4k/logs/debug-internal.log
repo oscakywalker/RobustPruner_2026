@@ -1,0 +1,15 @@
+{"time":"2026-04-16T17:16:04.308752074+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/fjh/GlimpsePrune_2/wandb/offline-run-20260416_171604-qtpo8q4k/logs/debug-core.log"}
+{"time":"2026-04-16T17:16:04.410371044+08:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2026-04-16T17:16:04.410446884+08:00","level":"INFO","msg":"created new stream","id":"qtpo8q4k"}
+{"time":"2026-04-16T17:16:04.410465132+08:00","level":"INFO","msg":"stream: started","id":"qtpo8q4k"}
+{"time":"2026-04-16T17:16:04.410481656+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"qtpo8q4k"}
+{"time":"2026-04-16T17:16:04.410498476+08:00","level":"INFO","msg":"sender: started","stream_id":"qtpo8q4k"}
+{"time":"2026-04-16T17:16:04.41052012+08:00","level":"INFO","msg":"handler: started","stream_id":"qtpo8q4k"}
+{"time":"2026-04-16T17:16:04.412725339+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2026-04-16T17:53:44.013272402+08:00","level":"INFO","msg":"stream: closing","id":"qtpo8q4k"}
+{"time":"2026-04-16T17:53:44.013310397+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2026-04-16T17:53:44.01336969+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2026-04-16T17:53:44.013437376+08:00","level":"INFO","msg":"handler: closed","stream_id":"qtpo8q4k"}
+{"time":"2026-04-16T17:53:44.01344329+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"qtpo8q4k"}
+{"time":"2026-04-16T17:53:44.013455931+08:00","level":"INFO","msg":"sender: closed","stream_id":"qtpo8q4k"}
+{"time":"2026-04-16T17:53:44.01353303+08:00","level":"INFO","msg":"stream: closed","id":"qtpo8q4k"}

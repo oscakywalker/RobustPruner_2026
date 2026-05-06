@@ -1,0 +1,8 @@
+{"time":"2026-03-03T16:24:01.885435447+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/fjh/GlimpsePrune/wandb/offline-run-20260303_162401-ps46ppod/logs/debug-core.log"}
+{"time":"2026-03-03T16:24:01.987487422+08:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2026-03-03T16:24:01.987548625+08:00","level":"INFO","msg":"created new stream","id":"ps46ppod"}
+{"time":"2026-03-03T16:24:01.987563382+08:00","level":"INFO","msg":"stream: started","id":"ps46ppod"}
+{"time":"2026-03-03T16:24:01.98757974+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"ps46ppod"}
+{"time":"2026-03-03T16:24:01.987584919+08:00","level":"INFO","msg":"sender: started","stream_id":"ps46ppod"}
+{"time":"2026-03-03T16:24:01.987593143+08:00","level":"INFO","msg":"handler: started","stream_id":"ps46ppod"}
+{"time":"2026-03-03T16:24:01.989582119+08:00","level":"INFO","msg":"Starting system monitor"}

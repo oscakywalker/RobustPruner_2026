@@ -1,0 +1,35 @@
+.DS_Store
+.DS_Store
+
+# outputs / checkpoints / model weights
+RobustPruner/output/
+**/checkpoint-*/
+*.pt
+*.pth
+*.bin
+*.safetensors
+
+# large datasets
+RobustPruner/viscot_dataset/
+RobustPruner/eval/vqav2/*.jsonl
+
+# python cache
+__pycache__/
+*.pyc
+.DS_Store
+
+# outputs / checkpoints / model weights
+RobustPruner/output/
+**/checkpoint-*/
+*.pt
+*.pth
+*.bin
+*.safetensors
+
+# large datasets
+RobustPruner/viscot_dataset/
+RobustPruner/eval/vqav2/*.jsonl
+
+# python cache
+__pycache__/
+*.pyc

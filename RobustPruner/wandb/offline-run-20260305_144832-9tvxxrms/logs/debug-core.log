@@ -1,0 +1,7 @@
+{"time":"2026-03-05T14:48:03.218151383+08:00","level":"INFO","msg":"main: starting server","port-filename":"/mnt/nvme/fjh/hf_cache/tmp/tmpdjc08w7l/port-829903.txt","pid":829903,"log-level":0,"disable-analytics":false,"shutdown-on-parent-exit":false,"enable-dcgm-profiling":false}
+{"time":"2026-03-05T14:48:03.219295843+08:00","level":"INFO","msg":"Will exit if parent process dies.","ppid":829903}
+{"time":"2026-03-05T14:48:03.219293212+08:00","level":"INFO","msg":"server is running","addr":{"IP":"127.0.0.1","Port":36019,"Zone":""}}
+{"time":"2026-03-05T14:48:03.409235372+08:00","level":"INFO","msg":"connection: ManageConnectionData: new connection created","id":"127.0.0.1:36970"}
+{"time":"2026-03-05T14:48:32.716528437+08:00","level":"INFO","msg":"handleInformInit: received","streamId":"9tvxxrms","id":"127.0.0.1:36970"}
+{"time":"2026-03-05T14:48:32.820483142+08:00","level":"INFO","msg":"handleInformInit: stream started","streamId":"9tvxxrms","id":"127.0.0.1:36970"}
+{"time":"2026-03-05T14:51:03.740107818+08:00","level":"INFO","msg":"Parent process exited, terminating service process."}

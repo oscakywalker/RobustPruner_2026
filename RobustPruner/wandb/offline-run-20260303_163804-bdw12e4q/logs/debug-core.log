@@ -1,0 +1,7 @@
+{"time":"2026-03-03T16:37:52.235381759+08:00","level":"INFO","msg":"main: starting server","port-filename":"/mnt/nvme/fjh/hf_cache/tmp/tmpf76cmf4h/port-316769.txt","pid":316769,"log-level":0,"disable-analytics":false,"shutdown-on-parent-exit":false,"enable-dcgm-profiling":false}
+{"time":"2026-03-03T16:37:52.236997672+08:00","level":"INFO","msg":"Will exit if parent process dies.","ppid":316769}
+{"time":"2026-03-03T16:37:52.236978196+08:00","level":"INFO","msg":"server is running","addr":{"IP":"127.0.0.1","Port":44043,"Zone":""}}
+{"time":"2026-03-03T16:37:52.426849038+08:00","level":"INFO","msg":"connection: ManageConnectionData: new connection created","id":"127.0.0.1:34420"}
+{"time":"2026-03-03T16:38:04.670213803+08:00","level":"INFO","msg":"handleInformInit: received","streamId":"bdw12e4q","id":"127.0.0.1:34420"}
+{"time":"2026-03-03T16:38:04.775027607+08:00","level":"INFO","msg":"handleInformInit: stream started","streamId":"bdw12e4q","id":"127.0.0.1:34420"}
+{"time":"2026-03-03T16:38:07.263595531+08:00","level":"INFO","msg":"Parent process exited, terminating service process."}

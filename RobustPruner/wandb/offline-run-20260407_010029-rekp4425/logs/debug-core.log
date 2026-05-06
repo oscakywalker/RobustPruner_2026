@@ -1,0 +1,13 @@
+{"time":"2026-04-07T01:00:28.162869227+08:00","level":"INFO","msg":"main: starting server","port-filename":"/tmp/tmpdy0rg31q/port-2483996.txt","pid":2483996,"log-level":0,"disable-analytics":false,"shutdown-on-parent-exit":false,"enable-dcgm-profiling":false}
+{"time":"2026-04-07T01:00:28.165138932+08:00","level":"INFO","msg":"Will exit if parent process dies.","ppid":2483996}
+{"time":"2026-04-07T01:00:28.165143969+08:00","level":"INFO","msg":"server is running","addr":{"IP":"127.0.0.1","Port":46207,"Zone":""}}
+{"time":"2026-04-07T01:00:28.349713277+08:00","level":"INFO","msg":"connection: ManageConnectionData: new connection created","id":"127.0.0.1:45322"}
+{"time":"2026-04-07T01:00:29.327299041+08:00","level":"INFO","msg":"handleInformInit: received","streamId":"rekp4425","id":"127.0.0.1:45322"}
+{"time":"2026-04-07T01:00:29.432471915+08:00","level":"INFO","msg":"handleInformInit: stream started","streamId":"rekp4425","id":"127.0.0.1:45322"}
+{"time":"2026-04-07T01:00:32.438204464+08:00","level":"INFO","msg":"handleInformTeardown: server teardown initiated","id":"127.0.0.1:45322"}
+{"time":"2026-04-07T01:00:32.438265594+08:00","level":"INFO","msg":"connection: closing","id":"127.0.0.1:45322"}
+{"time":"2026-04-07T01:00:32.438355811+08:00","level":"INFO","msg":"connection: closed successfully","id":"127.0.0.1:45322"}
+{"time":"2026-04-07T01:00:32.438280982+08:00","level":"INFO","msg":"server is shutting down"}
+{"time":"2026-04-07T01:00:32.438581895+08:00","level":"INFO","msg":"handleInformTeardown: server shutdown complete","id":"127.0.0.1:45322"}
+{"time":"2026-04-07T01:00:32.438588365+08:00","level":"INFO","msg":"connection: ManageConnectionData: connection closed","id":"127.0.0.1:45322"}
+{"time":"2026-04-07T01:00:32.438594755+08:00","level":"INFO","msg":"server is closed"}

@@ -1,0 +1,15 @@
+{"time":"2026-03-12T14:18:13.969339711+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/fjh/GlimpsePrune_2/wandb/offline-run-20260312_141813-udt3i0io/logs/debug-core.log"}
+{"time":"2026-03-12T14:18:14.070662905+08:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2026-03-12T14:18:14.070718959+08:00","level":"INFO","msg":"created new stream","id":"udt3i0io"}
+{"time":"2026-03-12T14:18:14.070733966+08:00","level":"INFO","msg":"stream: started","id":"udt3i0io"}
+{"time":"2026-03-12T14:18:14.070768192+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"udt3i0io"}
+{"time":"2026-03-12T14:18:14.070774113+08:00","level":"INFO","msg":"handler: started","stream_id":"udt3i0io"}
+{"time":"2026-03-12T14:18:14.070793333+08:00","level":"INFO","msg":"sender: started","stream_id":"udt3i0io"}
+{"time":"2026-03-12T14:18:14.072713753+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2026-03-12T14:52:09.35537973+08:00","level":"INFO","msg":"stream: closing","id":"udt3i0io"}
+{"time":"2026-03-12T14:52:09.355418588+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2026-03-12T14:52:09.355498167+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2026-03-12T14:52:09.355559574+08:00","level":"INFO","msg":"handler: closed","stream_id":"udt3i0io"}
+{"time":"2026-03-12T14:52:09.355564995+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"udt3i0io"}
+{"time":"2026-03-12T14:52:09.355571129+08:00","level":"INFO","msg":"sender: closed","stream_id":"udt3i0io"}
+{"time":"2026-03-12T14:52:09.355607685+08:00","level":"INFO","msg":"stream: closed","id":"udt3i0io"}

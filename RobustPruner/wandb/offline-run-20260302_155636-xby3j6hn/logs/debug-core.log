@@ -1,0 +1,13 @@
+{"time":"2026-03-02T15:55:42.021376031+08:00","level":"INFO","msg":"main: starting server","port-filename":"/mnt/nvme/fjh/hf_cache/tmp/tmpsu12je34/port-94155.txt","pid":94155,"log-level":0,"disable-analytics":false,"shutdown-on-parent-exit":false,"enable-dcgm-profiling":false}
+{"time":"2026-03-02T15:55:42.02250426+08:00","level":"INFO","msg":"Will exit if parent process dies.","ppid":94155}
+{"time":"2026-03-02T15:55:42.022502067+08:00","level":"INFO","msg":"server is running","addr":{"IP":"127.0.0.1","Port":39229,"Zone":""}}
+{"time":"2026-03-02T15:55:42.123120965+08:00","level":"INFO","msg":"connection: ManageConnectionData: new connection created","id":"127.0.0.1:45224"}
+{"time":"2026-03-02T15:56:36.136003383+08:00","level":"INFO","msg":"handleInformInit: received","streamId":"xby3j6hn","id":"127.0.0.1:45224"}
+{"time":"2026-03-02T15:56:36.291802729+08:00","level":"INFO","msg":"handleInformInit: stream started","streamId":"xby3j6hn","id":"127.0.0.1:45224"}
+{"time":"2026-03-02T16:30:18.401050684+08:00","level":"INFO","msg":"handleInformTeardown: server teardown initiated","id":"127.0.0.1:45224"}
+{"time":"2026-03-02T16:30:18.401144903+08:00","level":"INFO","msg":"server is shutting down"}
+{"time":"2026-03-02T16:30:18.401132612+08:00","level":"INFO","msg":"connection: closing","id":"127.0.0.1:45224"}
+{"time":"2026-03-02T16:30:18.401261414+08:00","level":"INFO","msg":"connection: closed successfully","id":"127.0.0.1:45224"}
+{"time":"2026-03-02T16:30:18.401481701+08:00","level":"INFO","msg":"handleInformTeardown: server shutdown complete","id":"127.0.0.1:45224"}
+{"time":"2026-03-02T16:30:18.401500468+08:00","level":"INFO","msg":"connection: ManageConnectionData: connection closed","id":"127.0.0.1:45224"}
+{"time":"2026-03-02T16:30:18.40150887+08:00","level":"INFO","msg":"server is closed"}

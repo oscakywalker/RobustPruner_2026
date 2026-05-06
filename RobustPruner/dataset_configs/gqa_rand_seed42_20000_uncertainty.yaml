@@ -1,0 +1,16 @@
+datasets:
+  - json_path: uncertainty_dataset_construction/gqa_rand_seed42_20000.jsonl
+    mapper: cot_train
+    bbox_type: xyxy
+    additional_mappers:
+      - norm_bboxes
+    score_funcs:
+      - llm
+    query_perturbation_paths:
+      - uncertainty_dataset_construction/text_perturbations_advanced_vocabulary.json
+      - uncertainty_dataset_construction/text_perturbations_concise_rephrase.json
+      - uncertainty_dataset_construction/text_perturbations_sentence_structure_change.json
+      - uncertainty_dataset_construction/text_perturbations_synonym_replacement.json
+    query_perturbation_replace_ratio: 0.3
+    uncertainty_dir: /RobustPruner_2026/RobustPruner/glimpse_qwen_eval/token_scores/layer12_token_stats_per_doc
+    uncertainty_target: simi_var

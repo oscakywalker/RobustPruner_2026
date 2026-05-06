@@ -1,0 +1,15 @@
+{"time":"2026-04-07T01:00:29.330204509+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/fjh/GlimpsePrune_2/wandb/offline-run-20260407_010029-rekp4425/logs/debug-core.log"}
+{"time":"2026-04-07T01:00:29.432383715+08:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2026-04-07T01:00:29.432452967+08:00","level":"INFO","msg":"created new stream","id":"rekp4425"}
+{"time":"2026-04-07T01:00:29.43246904+08:00","level":"INFO","msg":"stream: started","id":"rekp4425"}
+{"time":"2026-04-07T01:00:29.432484706+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"rekp4425"}
+{"time":"2026-04-07T01:00:29.432485979+08:00","level":"INFO","msg":"sender: started","stream_id":"rekp4425"}
+{"time":"2026-04-07T01:00:29.432538272+08:00","level":"INFO","msg":"handler: started","stream_id":"rekp4425"}
+{"time":"2026-04-07T01:00:29.43465165+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2026-04-07T01:00:32.438305284+08:00","level":"INFO","msg":"stream: closing","id":"rekp4425"}
+{"time":"2026-04-07T01:00:32.438334236+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2026-04-07T01:00:32.438389345+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2026-04-07T01:00:32.438469391+08:00","level":"INFO","msg":"handler: closed","stream_id":"rekp4425"}
+{"time":"2026-04-07T01:00:32.438475315+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"rekp4425"}
+{"time":"2026-04-07T01:00:32.438529118+08:00","level":"INFO","msg":"sender: closed","stream_id":"rekp4425"}
+{"time":"2026-04-07T01:00:32.438536499+08:00","level":"INFO","msg":"stream: closed","id":"rekp4425"}

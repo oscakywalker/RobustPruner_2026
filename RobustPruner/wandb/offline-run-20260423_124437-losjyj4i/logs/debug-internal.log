@@ -1,0 +1,15 @@
+{"time":"2026-04-23T12:44:37.353999213+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/fjh/GlimpsePrune_2/wandb/offline-run-20260423_124437-losjyj4i/logs/debug-core.log"}
+{"time":"2026-04-23T12:44:37.455562301+08:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2026-04-23T12:44:37.455642577+08:00","level":"INFO","msg":"created new stream","id":"losjyj4i"}
+{"time":"2026-04-23T12:44:37.455676661+08:00","level":"INFO","msg":"stream: started","id":"losjyj4i"}
+{"time":"2026-04-23T12:44:37.455691081+08:00","level":"INFO","msg":"handler: started","stream_id":"losjyj4i"}
+{"time":"2026-04-23T12:44:37.455692449+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"losjyj4i"}
+{"time":"2026-04-23T12:44:37.455706542+08:00","level":"INFO","msg":"sender: started","stream_id":"losjyj4i"}
+{"time":"2026-04-23T12:44:37.457973964+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2026-04-23T13:05:11.720792046+08:00","level":"INFO","msg":"stream: closing","id":"losjyj4i"}
+{"time":"2026-04-23T13:05:11.720835236+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2026-04-23T13:05:11.720881286+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2026-04-23T13:05:11.72097721+08:00","level":"INFO","msg":"handler: closed","stream_id":"losjyj4i"}
+{"time":"2026-04-23T13:05:11.720989577+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"losjyj4i"}
+{"time":"2026-04-23T13:05:11.721056051+08:00","level":"INFO","msg":"sender: closed","stream_id":"losjyj4i"}
+{"time":"2026-04-23T13:05:11.721076322+08:00","level":"INFO","msg":"stream: closed","id":"losjyj4i"}

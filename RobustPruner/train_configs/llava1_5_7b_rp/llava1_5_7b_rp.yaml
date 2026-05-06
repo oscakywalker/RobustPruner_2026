@@ -1,0 +1,83 @@
+model_name_or_path: /mnt/nvme/fjh/llava-v1.5-7b
+train_dataset: dataset_configs/gqa_rand_seed42_20000_uncertainty_llava_ov.yaml
+loc_loss_class: MaskLoss
+loc_dice_weight: 1.0
+loc_bce_weight: 0.1
+loc_weight: 1.0
+le_weight: 1.0
+uncertainty_loss_weight: 0.5
+use_attention_logits: true
+image_token_selection_strategy: dpp
+le_norm_type: rmsnorm
+le_layers:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24
+  - 25
+  - 26
+  - 27
+  - 28
+  - 29
+  - 30
+  - 31
+selected_layers:
+  - 14
+reduce_layer: 14
+
+attn_fuse_type: DPP_direct_fuser_2
+attn_fuse_size: 256
+visual_cond_size: 512
+attn_fuse_num_heads: 4
+attn_fuse_hidden_act: silu
+use_uncertainty_penalty_head: true
+ori_attn_supervision: false
+deep_supervision: false
+selected_visual_layers:
+  - 23
+  - 17
+  - 11
+  - 5
+dpp_similarity_visual_layer: 14
+
+
+output_dir: output/llava1_5_7b_robustpruner
+run_name: llava1_5_7b_rp_0801
+
+fp16: false
+bf16: true
+torch_dtype: bfloat16
+attn_implementation: flash_attention_2
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 8
+learning_rate: 1e-4
+num_train_epochs: 1
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+#max_grad_norm: 0.0
+
+remove_unused_columns: false
+report_to: none
+logging_steps: 10
+save_steps: 500

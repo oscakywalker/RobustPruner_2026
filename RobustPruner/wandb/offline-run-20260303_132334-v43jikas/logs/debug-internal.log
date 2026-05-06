@@ -1,0 +1,8 @@
+{"time":"2026-03-03T13:23:34.336036717+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/fjh/GlimpsePrune/wandb/offline-run-20260303_132334-v43jikas/logs/debug-core.log"}
+{"time":"2026-03-03T13:23:34.437326228+08:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2026-03-03T13:23:34.437378954+08:00","level":"INFO","msg":"created new stream","id":"v43jikas"}
+{"time":"2026-03-03T13:23:34.437398181+08:00","level":"INFO","msg":"stream: started","id":"v43jikas"}
+{"time":"2026-03-03T13:23:34.437414541+08:00","level":"INFO","msg":"sender: started","stream_id":"v43jikas"}
+{"time":"2026-03-03T13:23:34.437420717+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"v43jikas"}
+{"time":"2026-03-03T13:23:34.437414797+08:00","level":"INFO","msg":"handler: started","stream_id":"v43jikas"}
+{"time":"2026-03-03T13:23:34.439287427+08:00","level":"INFO","msg":"Starting system monitor"}

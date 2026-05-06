@@ -1,0 +1,8 @@
+{"time":"2026-03-03T16:38:04.672911984+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/fjh/GlimpsePrune/wandb/offline-run-20260303_163804-bdw12e4q/logs/debug-core.log"}
+{"time":"2026-03-03T16:38:04.774956442+08:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2026-03-03T16:38:04.775012066+08:00","level":"INFO","msg":"created new stream","id":"bdw12e4q"}
+{"time":"2026-03-03T16:38:04.775024975+08:00","level":"INFO","msg":"stream: started","id":"bdw12e4q"}
+{"time":"2026-03-03T16:38:04.775054086+08:00","level":"INFO","msg":"sender: started","stream_id":"bdw12e4q"}
+{"time":"2026-03-03T16:38:04.775061758+08:00","level":"INFO","msg":"handler: started","stream_id":"bdw12e4q"}
+{"time":"2026-03-03T16:38:04.775054756+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"bdw12e4q"}
+{"time":"2026-03-03T16:38:04.777149519+08:00","level":"INFO","msg":"Starting system monitor"}

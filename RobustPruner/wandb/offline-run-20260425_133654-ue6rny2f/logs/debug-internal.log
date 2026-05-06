@@ -1,0 +1,15 @@
+{"time":"2026-04-25T13:36:54.280913364+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/fjh/GlimpsePrune_2/wandb/offline-run-20260425_133654-ue6rny2f/logs/debug-core.log"}
+{"time":"2026-04-25T13:36:54.383178059+08:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2026-04-25T13:36:54.383253402+08:00","level":"INFO","msg":"created new stream","id":"ue6rny2f"}
+{"time":"2026-04-25T13:36:54.383272161+08:00","level":"INFO","msg":"stream: started","id":"ue6rny2f"}
+{"time":"2026-04-25T13:36:54.383288344+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"ue6rny2f"}
+{"time":"2026-04-25T13:36:54.383292157+08:00","level":"INFO","msg":"sender: started","stream_id":"ue6rny2f"}
+{"time":"2026-04-25T13:36:54.383314362+08:00","level":"INFO","msg":"handler: started","stream_id":"ue6rny2f"}
+{"time":"2026-04-25T13:36:54.385545044+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2026-04-25T14:00:37.895841381+08:00","level":"INFO","msg":"stream: closing","id":"ue6rny2f"}
+{"time":"2026-04-25T14:00:37.895894722+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2026-04-25T14:00:37.895978184+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2026-04-25T14:00:37.896102327+08:00","level":"INFO","msg":"handler: closed","stream_id":"ue6rny2f"}
+{"time":"2026-04-25T14:00:37.896113342+08:00","level":"INFO","msg":"sender: closed","stream_id":"ue6rny2f"}
+{"time":"2026-04-25T14:00:37.896111268+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"ue6rny2f"}
+{"time":"2026-04-25T14:00:37.896199325+08:00","level":"INFO","msg":"stream: closed","id":"ue6rny2f"}

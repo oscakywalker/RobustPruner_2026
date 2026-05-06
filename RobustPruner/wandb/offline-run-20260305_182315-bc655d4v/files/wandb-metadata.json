@@ -1,0 +1,63 @@
+{
+  "os": "Linux-6.8.0-63-generic-x86_64-with-glibc2.39",
+  "python": "CPython 3.10.19",
+  "startedAt": "2026-03-05T10:23:15.809566Z",
+  "args": [
+    "--config",
+    "train_configs/qwen2_5_7b_gp/qwen2_5_7b_gp_uncertainty.yaml"
+  ],
+  "program": "/home/fjh/GlimpsePrune_2/train_qwen_gp.py",
+  "codePath": "train_qwen_gp.py",
+  "git": {
+    "remote": "https://github.com/HVision-NKU/GlimpsePrune.git",
+    "commit": "416d0493b58b29d9f439b0b27c17feed98e4e490"
+  },
+  "root": "/home/fjh/GlimpsePrune_2",
+  "host": "iZbp1fax8vub5x0s6qvjqbZ",
+  "executable": "/home/fjh/miniconda3/envs/Glimpse/bin/python3.10",
+  "codePathLocal": "train_qwen_gp.py",
+  "cpu_count": 16,
+  "cpu_count_logical": 32,
+  "gpu": "NVIDIA H20",
+  "gpu_count": 4,
+  "disk": {
+    "/": {
+      "total": "2164168491008",
+      "used": "1479063465984"
+    }
+  },
+  "memory": {
+    "total": "395495514112"
+  },
+  "cpu": {
+    "count": 16,
+    "countLogical": 32
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA H20",
+      "memoryTotal": "102625181696",
+      "cudaCores": 9984,
+      "architecture": "Hopper"
+    },
+    {
+      "name": "NVIDIA H20",
+      "memoryTotal": "102625181696",
+      "cudaCores": 9984,
+      "architecture": "Hopper"
+    },
+    {
+      "name": "NVIDIA H20",
+      "memoryTotal": "102625181696",
+      "cudaCores": 9984,
+      "architecture": "Hopper"
+    },
+    {
+      "name": "NVIDIA H20",
+      "memoryTotal": "102625181696",
+      "cudaCores": 9984,
+      "architecture": "Hopper"
+    }
+  ],
+  "cudaVersion": "13.0"
+}

@@ -1,0 +1,154 @@
+import json
+from pathlib import Path
+from statistics import mean
+
+ROOT = Path("/mnt/nvme/fjh/llava-evaluation")
+
+INPUT_DIRS = [
+    ROOT / "visualization_text_perturb/gqa/text_perturb/0.1/vscan_with_stage_2_penalty/alpha_0.0/llava_v1_5_7b_vscan_text_perturbations_0/token_scores",
+    ROOT / "visualization_text_perturb/gqa/text_perturb/0.1/vscan_with_stage_2_penalty/alpha_0.0/llava_v1_5_7b_vscan_text_perturbations_1/token_scores",
+    ROOT / "visualization_text_perturb/gqa/text_perturb/0.1/vscan_with_stage_2_penalty/alpha_0.0/llava_v1_5_7b_vscan_text_perturbations_2/token_scores",
+    ROOT / "visualization_text_perturb/gqa/text_perturb/0.1/vscan_with_stage_2_penalty/alpha_0.0/llava_v1_5_7b_vscan_text_perturbations_3/token_scores",
+    ROOT / "visualization_text_perturb/gqa/text_perturb/0.1/vscan_with_stage_2_penalty/alpha_0.0/llava_v1_5_7b_vscan_text_perturbations_4/token_scores",
+]
+
+OUTPUT_DIR = ROOT / "llava_combined_token_score_vscan"
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def population_variance(values):
+    if not values:
+        return 0.0
+    m = mean(values)
+    return sum((x - m) ** 2 for x in values) / len(values)
+
+
+def extract_raw_scores_from_scores_flat(data, fpath: Path):
+    """
+    Return: List[float], length = num_tokens (if available)
+    Supports:
+      - scores_flat is list[{"raw":..., "variance":...}]
+      - scores_flat is dict like {"0": {"raw":...}, ...} or {"0": 0.123, ...}
+      - scores_flat is a JSON string of either above
+    """
+    if "scores_flat" not in data:
+        raise ValueError(f"'scores_flat' missing in {fpath}")
+
+    raw_obj = data["scores_flat"]
+
+    # If it's a JSON string, parse it.
+    if isinstance(raw_obj, str):
+        try:
+            raw_obj = json.loads(raw_obj)
+        except Exception as e:
+            raise ValueError(f"Failed to parse 'scores_flat' JSON string in {fpath}: {e}")
+
+    # Case A: list
+    if isinstance(raw_obj, list):
+        # expected list of dicts: [{"raw":..., "variance":...}, ...]
+        out = []
+        for j, item in enumerate(raw_obj):
+            if isinstance(item, dict):
+                if "raw" not in item:
+                    raise ValueError(f"Item {j} missing 'raw' in scores_flat list: {fpath}")
+                out.append(float(item["raw"]))
+            else:
+                # sometimes it's already numeric
+                out.append(float(item))
+        scores = out
+
+    # Case B: dict (possibly keyed by token idx)
+    elif isinstance(raw_obj, dict):
+        # sort by numeric key if possible
+        try:
+            items = sorted(raw_obj.items(), key=lambda kv: int(kv[0]))
+        except Exception:
+            # if keys aren't numeric, just keep insertion order
+            items = list(raw_obj.items())
+
+        scores = []
+        for k, v in items:
+            if isinstance(v, dict):
+                if "raw" not in v:
+                    raise ValueError(f"Key {k} missing 'raw' in scores_flat dict: {fpath}")
+                scores.append(float(v["raw"]))
+            else:
+                scores.append(float(v))
+
+    else:
+        raise TypeError(
+            f"Unexpected type for 'scores_flat' in {fpath}: {type(raw_obj)}. Expected str/dict/list."
+        )
+
+    # sanity check with num_tokens if provided
+    num_tokens = data.get("num_tokens")
+    if num_tokens is not None and len(scores) != num_tokens:
+        raise ValueError(
+            f"Length of scores_flat ({len(scores)}) != num_tokens ({num_tokens}) in {fpath}"
+        )
+
+    return scores
+
+
+def main():
+    base_dir = INPUT_DIRS[0]
+    json_files = sorted(f for f in base_dir.iterdir() if f.suffix == ".json")
+    print(f"Found {len(json_files)} JSON files in base dir: {base_dir}")
+
+    for idx, base_file in enumerate(json_files, start=1):
+        filename = base_file.name
+        token_score_lists = []
+        doc_id = None
+
+        for d in INPUT_DIRS:
+            fpath = d / filename
+            if not fpath.exists():
+                raise FileNotFoundError(f"Missing file: {fpath}")
+
+            with fpath.open("r") as f:
+                data = json.load(f)
+
+            if doc_id is None:
+                doc_id = data.get("doc_id")
+
+            # ONLY extract per-token raw score
+            scores = extract_raw_scores_from_scores_flat(data, fpath)
+            token_score_lists.append(scores)
+
+        lengths = {len(lst) for lst in token_score_lists}
+        if len(lengths) != 1:
+            raise ValueError(f"Token lengths mismatch for {filename}: {lengths}")
+
+        num_tokens = lengths.pop()
+
+        token_stats = {}
+        has_nonzero_variance = False
+
+        for i in range(num_tokens):
+            values = [lst[i] for lst in token_score_lists]  # list[float]
+            m = mean(values)
+            v = population_variance(values)
+            if v > 0:
+                has_nonzero_variance = True
+            token_stats[str(i)] = {"avg_raw": m, "var_raw": v}
+
+        if has_nonzero_variance:
+            print(f"[VAR>0] {filename}")
+
+        output = {
+            "doc_id": doc_id,
+            "token_stats": token_stats
+        }
+
+        out_path = OUTPUT_DIR / filename
+        with out_path.open("w") as f:
+            json.dump(output, f)
+
+        if idx % 100 == 0 or idx == len(json_files):
+            print(f"Processed {idx}/{len(json_files)} files")
+
+    print("All done! Results saved to:", OUTPUT_DIR)
+
+
+if __name__ == "__main__":
+    main()

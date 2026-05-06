@@ -1,0 +1,15 @@
+{"time":"2026-03-18T21:17:32.427904137+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/fjh/GlimpsePrune_2/wandb/offline-run-20260318_211732-4kyhozug/logs/debug-core.log"}
+{"time":"2026-03-18T21:17:32.529183202+08:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2026-03-18T21:17:32.529240671+08:00","level":"INFO","msg":"created new stream","id":"4kyhozug"}
+{"time":"2026-03-18T21:17:32.529254961+08:00","level":"INFO","msg":"stream: started","id":"4kyhozug"}
+{"time":"2026-03-18T21:17:32.529270116+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"4kyhozug"}
+{"time":"2026-03-18T21:17:32.529279943+08:00","level":"INFO","msg":"sender: started","stream_id":"4kyhozug"}
+{"time":"2026-03-18T21:17:32.529300389+08:00","level":"INFO","msg":"handler: started","stream_id":"4kyhozug"}
+{"time":"2026-03-18T21:17:32.531915363+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2026-03-18T21:17:34.53484287+08:00","level":"INFO","msg":"stream: closing","id":"4kyhozug"}
+{"time":"2026-03-18T21:17:34.534871282+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2026-03-18T21:17:34.534962542+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2026-03-18T21:17:34.535039688+08:00","level":"INFO","msg":"handler: closed","stream_id":"4kyhozug"}
+{"time":"2026-03-18T21:17:34.535044935+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"4kyhozug"}
+{"time":"2026-03-18T21:17:34.535053174+08:00","level":"INFO","msg":"sender: closed","stream_id":"4kyhozug"}
+{"time":"2026-03-18T21:17:34.535106856+08:00","level":"INFO","msg":"stream: closed","id":"4kyhozug"}

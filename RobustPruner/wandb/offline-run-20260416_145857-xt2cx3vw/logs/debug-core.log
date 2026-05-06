@@ -1,0 +1,13 @@
+{"time":"2026-04-16T14:58:55.061313362+08:00","level":"INFO","msg":"main: starting server","port-filename":"/mnt/nvme/fjh/hf_cache/tmp/tmpeufzm4zw/port-3530981.txt","pid":3530981,"log-level":0,"disable-analytics":false,"shutdown-on-parent-exit":false,"enable-dcgm-profiling":false}
+{"time":"2026-04-16T14:58:55.063702643+08:00","level":"INFO","msg":"Will exit if parent process dies.","ppid":3530981}
+{"time":"2026-04-16T14:58:55.063697552+08:00","level":"INFO","msg":"server is running","addr":{"IP":"127.0.0.1","Port":44649,"Zone":""}}
+{"time":"2026-04-16T14:58:55.248277557+08:00","level":"INFO","msg":"connection: ManageConnectionData: new connection created","id":"127.0.0.1:58904"}
+{"time":"2026-04-16T14:58:57.975684282+08:00","level":"INFO","msg":"handleInformInit: received","streamId":"xt2cx3vw","id":"127.0.0.1:58904"}
+{"time":"2026-04-16T14:58:58.080224895+08:00","level":"INFO","msg":"handleInformInit: stream started","streamId":"xt2cx3vw","id":"127.0.0.1:58904"}
+{"time":"2026-04-16T15:19:36.575408944+08:00","level":"INFO","msg":"handleInformTeardown: server teardown initiated","id":"127.0.0.1:58904"}
+{"time":"2026-04-16T15:19:36.575511399+08:00","level":"INFO","msg":"server is shutting down"}
+{"time":"2026-04-16T15:19:36.57549865+08:00","level":"INFO","msg":"connection: closing","id":"127.0.0.1:58904"}
+{"time":"2026-04-16T15:19:36.575624857+08:00","level":"INFO","msg":"connection: closed successfully","id":"127.0.0.1:58904"}
+{"time":"2026-04-16T15:19:36.575895776+08:00","level":"INFO","msg":"handleInformTeardown: server shutdown complete","id":"127.0.0.1:58904"}
+{"time":"2026-04-16T15:19:36.575909651+08:00","level":"INFO","msg":"connection: ManageConnectionData: connection closed","id":"127.0.0.1:58904"}
+{"time":"2026-04-16T15:19:36.57591416+08:00","level":"INFO","msg":"server is closed"}

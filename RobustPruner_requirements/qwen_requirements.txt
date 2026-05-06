@@ -1,0 +1,10 @@
+transformers==4.51.3
+trl==0.18.1
+accelerate==1.8.1
+matplotlib==3.10.3
+wandb==0.19.11
+peft==0.15.2
+qwen-vl-utils[decord]
+lmms-eval==0.3.5
+vllm==0.9.0.1
+gradio==5.39.0

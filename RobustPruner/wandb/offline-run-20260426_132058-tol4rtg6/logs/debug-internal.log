@@ -1,0 +1,15 @@
+{"time":"2026-04-26T13:20:58.342408942+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/fjh/GlimpsePrune_2/wandb/offline-run-20260426_132058-tol4rtg6/logs/debug-core.log"}
+{"time":"2026-04-26T13:20:58.444629097+08:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2026-04-26T13:20:58.444703394+08:00","level":"INFO","msg":"created new stream","id":"tol4rtg6"}
+{"time":"2026-04-26T13:20:58.444721809+08:00","level":"INFO","msg":"stream: started","id":"tol4rtg6"}
+{"time":"2026-04-26T13:20:58.44473775+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"tol4rtg6"}
+{"time":"2026-04-26T13:20:58.44473835+08:00","level":"INFO","msg":"sender: started","stream_id":"tol4rtg6"}
+{"time":"2026-04-26T13:20:58.44477753+08:00","level":"INFO","msg":"handler: started","stream_id":"tol4rtg6"}
+{"time":"2026-04-26T13:20:58.447043554+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2026-04-26T13:40:31.691398232+08:00","level":"INFO","msg":"stream: closing","id":"tol4rtg6"}
+{"time":"2026-04-26T13:40:31.691458899+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2026-04-26T13:40:31.691538234+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2026-04-26T13:40:31.691622637+08:00","level":"INFO","msg":"handler: closed","stream_id":"tol4rtg6"}
+{"time":"2026-04-26T13:40:31.691628633+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"tol4rtg6"}
+{"time":"2026-04-26T13:40:31.691646869+08:00","level":"INFO","msg":"sender: closed","stream_id":"tol4rtg6"}
+{"time":"2026-04-26T13:40:31.691729895+08:00","level":"INFO","msg":"stream: closed","id":"tol4rtg6"}

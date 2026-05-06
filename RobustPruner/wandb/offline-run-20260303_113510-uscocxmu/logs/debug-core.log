@@ -1,0 +1,7 @@
+{"time":"2026-03-03T11:35:05.969593316+08:00","level":"INFO","msg":"main: starting server","port-filename":"/mnt/nvme/fjh/hf_cache/tmp/tmppsn1a63w/port-246789.txt","pid":246789,"log-level":0,"disable-analytics":false,"shutdown-on-parent-exit":false,"enable-dcgm-profiling":false}
+{"time":"2026-03-03T11:35:05.972168208+08:00","level":"INFO","msg":"Will exit if parent process dies.","ppid":246789}
+{"time":"2026-03-03T11:35:05.972163156+08:00","level":"INFO","msg":"server is running","addr":{"IP":"127.0.0.1","Port":39223,"Zone":""}}
+{"time":"2026-03-03T11:35:06.160438562+08:00","level":"INFO","msg":"connection: ManageConnectionData: new connection created","id":"127.0.0.1:42980"}
+{"time":"2026-03-03T11:35:10.785174238+08:00","level":"INFO","msg":"handleInformInit: received","streamId":"uscocxmu","id":"127.0.0.1:42980"}
+{"time":"2026-03-03T11:35:10.890227754+08:00","level":"INFO","msg":"handleInformInit: stream started","streamId":"uscocxmu","id":"127.0.0.1:42980"}
+{"time":"2026-03-03T11:35:12.38459798+08:00","level":"INFO","msg":"Parent process exited, terminating service process."}

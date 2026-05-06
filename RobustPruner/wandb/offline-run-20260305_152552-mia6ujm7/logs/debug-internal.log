@@ -1,0 +1,15 @@
+{"time":"2026-03-05T15:25:52.170042269+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/fjh/GlimpsePrune_2/wandb/offline-run-20260305_152552-mia6ujm7/logs/debug-core.log"}
+{"time":"2026-03-05T15:25:52.272039679+08:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2026-03-05T15:25:52.272096768+08:00","level":"INFO","msg":"created new stream","id":"mia6ujm7"}
+{"time":"2026-03-05T15:25:52.272109808+08:00","level":"INFO","msg":"stream: started","id":"mia6ujm7"}
+{"time":"2026-03-05T15:25:52.272126009+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"mia6ujm7"}
+{"time":"2026-03-05T15:25:52.272128548+08:00","level":"INFO","msg":"sender: started","stream_id":"mia6ujm7"}
+{"time":"2026-03-05T15:25:52.272156146+08:00","level":"INFO","msg":"handler: started","stream_id":"mia6ujm7"}
+{"time":"2026-03-05T15:25:52.274098783+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2026-03-05T15:59:56.338515415+08:00","level":"INFO","msg":"stream: closing","id":"mia6ujm7"}
+{"time":"2026-03-05T15:59:56.338557213+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2026-03-05T15:59:56.338595862+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2026-03-05T15:59:56.338659316+08:00","level":"INFO","msg":"handler: closed","stream_id":"mia6ujm7"}
+{"time":"2026-03-05T15:59:56.33866432+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"mia6ujm7"}
+{"time":"2026-03-05T15:59:56.338676461+08:00","level":"INFO","msg":"sender: closed","stream_id":"mia6ujm7"}
+{"time":"2026-03-05T15:59:56.338751361+08:00","level":"INFO","msg":"stream: closed","id":"mia6ujm7"}

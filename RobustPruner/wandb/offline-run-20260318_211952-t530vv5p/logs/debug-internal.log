@@ -1,0 +1,15 @@
+{"time":"2026-03-18T21:19:52.899667219+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/fjh/GlimpsePrune_2/wandb/offline-run-20260318_211952-t530vv5p/logs/debug-core.log"}
+{"time":"2026-03-18T21:19:53.000917695+08:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2026-03-18T21:19:53.000974801+08:00","level":"INFO","msg":"created new stream","id":"t530vv5p"}
+{"time":"2026-03-18T21:19:53.00098969+08:00","level":"INFO","msg":"stream: started","id":"t530vv5p"}
+{"time":"2026-03-18T21:19:53.001017166+08:00","level":"INFO","msg":"handler: started","stream_id":"t530vv5p"}
+{"time":"2026-03-18T21:19:53.001025146+08:00","level":"INFO","msg":"sender: started","stream_id":"t530vv5p"}
+{"time":"2026-03-18T21:19:53.001016727+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"t530vv5p"}
+{"time":"2026-03-18T21:19:53.003048013+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2026-03-18T22:08:19.133427052+08:00","level":"INFO","msg":"stream: closing","id":"t530vv5p"}
+{"time":"2026-03-18T22:08:19.133466714+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2026-03-18T22:08:19.133597462+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2026-03-18T22:08:19.133659513+08:00","level":"INFO","msg":"handler: closed","stream_id":"t530vv5p"}
+{"time":"2026-03-18T22:08:19.133664685+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"t530vv5p"}
+{"time":"2026-03-18T22:08:19.133675151+08:00","level":"INFO","msg":"sender: closed","stream_id":"t530vv5p"}
+{"time":"2026-03-18T22:08:19.133858575+08:00","level":"INFO","msg":"stream: closed","id":"t530vv5p"}

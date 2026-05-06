@@ -1,0 +1,15 @@
+{"time":"2026-03-15T22:51:41.774887704+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/fjh/GlimpsePrune_2/wandb/offline-run-20260315_225141-ng6t95kl/logs/debug-core.log"}
+{"time":"2026-03-15T22:51:41.876330043+08:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2026-03-15T22:51:41.876391737+08:00","level":"INFO","msg":"created new stream","id":"ng6t95kl"}
+{"time":"2026-03-15T22:51:41.8764088+08:00","level":"INFO","msg":"stream: started","id":"ng6t95kl"}
+{"time":"2026-03-15T22:51:41.876419107+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"ng6t95kl"}
+{"time":"2026-03-15T22:51:41.876427307+08:00","level":"INFO","msg":"sender: started","stream_id":"ng6t95kl"}
+{"time":"2026-03-15T22:51:41.876452632+08:00","level":"INFO","msg":"handler: started","stream_id":"ng6t95kl"}
+{"time":"2026-03-15T22:51:41.878839657+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2026-03-15T23:55:01.815446873+08:00","level":"INFO","msg":"stream: closing","id":"ng6t95kl"}
+{"time":"2026-03-15T23:55:01.81548739+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2026-03-15T23:55:01.815533883+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2026-03-15T23:55:01.815621481+08:00","level":"INFO","msg":"handler: closed","stream_id":"ng6t95kl"}
+{"time":"2026-03-15T23:55:01.815627041+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"ng6t95kl"}
+{"time":"2026-03-15T23:55:01.815644135+08:00","level":"INFO","msg":"sender: closed","stream_id":"ng6t95kl"}
+{"time":"2026-03-15T23:55:01.815739179+08:00","level":"INFO","msg":"stream: closed","id":"ng6t95kl"}

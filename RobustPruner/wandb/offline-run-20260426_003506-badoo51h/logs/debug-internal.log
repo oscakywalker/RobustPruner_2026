@@ -1,0 +1,15 @@
+{"time":"2026-04-26T00:35:06.128212147+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/fjh/GlimpsePrune_2/wandb/offline-run-20260426_003506-badoo51h/logs/debug-core.log"}
+{"time":"2026-04-26T00:35:06.229670266+08:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2026-04-26T00:35:06.229744607+08:00","level":"INFO","msg":"created new stream","id":"badoo51h"}
+{"time":"2026-04-26T00:35:06.229766269+08:00","level":"INFO","msg":"stream: started","id":"badoo51h"}
+{"time":"2026-04-26T00:35:06.229787103+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"badoo51h"}
+{"time":"2026-04-26T00:35:06.229800426+08:00","level":"INFO","msg":"handler: started","stream_id":"badoo51h"}
+{"time":"2026-04-26T00:35:06.229794052+08:00","level":"INFO","msg":"sender: started","stream_id":"badoo51h"}
+{"time":"2026-04-26T00:35:06.232075701+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2026-04-26T00:54:51.493122383+08:00","level":"INFO","msg":"stream: closing","id":"badoo51h"}
+{"time":"2026-04-26T00:54:51.493177071+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2026-04-26T00:54:51.493231339+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2026-04-26T00:54:51.493313018+08:00","level":"INFO","msg":"handler: closed","stream_id":"badoo51h"}
+{"time":"2026-04-26T00:54:51.493319138+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"badoo51h"}
+{"time":"2026-04-26T00:54:51.493323792+08:00","level":"INFO","msg":"sender: closed","stream_id":"badoo51h"}
+{"time":"2026-04-26T00:54:51.493374091+08:00","level":"INFO","msg":"stream: closed","id":"badoo51h"}

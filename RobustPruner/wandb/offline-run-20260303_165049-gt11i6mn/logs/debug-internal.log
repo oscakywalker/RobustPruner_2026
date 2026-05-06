@@ -1,0 +1,15 @@
+{"time":"2026-03-03T16:50:49.476944549+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/home/fjh/GlimpsePrune/wandb/offline-run-20260303_165049-gt11i6mn/logs/debug-core.log"}
+{"time":"2026-03-03T16:50:49.578196685+08:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2026-03-03T16:50:49.578248939+08:00","level":"INFO","msg":"created new stream","id":"gt11i6mn"}
+{"time":"2026-03-03T16:50:49.578263808+08:00","level":"INFO","msg":"stream: started","id":"gt11i6mn"}
+{"time":"2026-03-03T16:50:49.578287636+08:00","level":"INFO","msg":"sender: started","stream_id":"gt11i6mn"}
+{"time":"2026-03-03T16:50:49.57828402+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"gt11i6mn"}
+{"time":"2026-03-03T16:50:49.578321693+08:00","level":"INFO","msg":"handler: started","stream_id":"gt11i6mn"}
+{"time":"2026-03-03T16:50:49.580367055+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2026-03-03T16:51:00.592186869+08:00","level":"INFO","msg":"stream: closing","id":"gt11i6mn"}
+{"time":"2026-03-03T16:51:00.592220523+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2026-03-03T16:51:00.592248656+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2026-03-03T16:51:00.592312777+08:00","level":"INFO","msg":"handler: closed","stream_id":"gt11i6mn"}
+{"time":"2026-03-03T16:51:00.592317217+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"gt11i6mn"}
+{"time":"2026-03-03T16:51:00.592330668+08:00","level":"INFO","msg":"sender: closed","stream_id":"gt11i6mn"}
+{"time":"2026-03-03T16:51:00.592380582+08:00","level":"INFO","msg":"stream: closed","id":"gt11i6mn"}
