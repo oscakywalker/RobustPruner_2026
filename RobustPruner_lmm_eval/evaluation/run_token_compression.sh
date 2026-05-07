@@ -9,9 +9,6 @@ NUM_PROCESSES=2
 
 export PYTHONPATH="${LOCAL_LMMS_EVAL_ROOT}:${PYTHONPATH:-}"
 export LMMS_DISABLE_TQDM="${LMMS_DISABLE_TQDM:-False}"
-# export OPENAI_API_BASE="${OPENAI_API_BASE:-https://dashscope.aliyuncs.com/compatible-mode/v1}"
-# export OPENAI_API_KEY="${OPENAI_API_KEY:-sk-c653b84b9d74460dbb8099eacca2a5ed}"
-# export HALLUSION_BENCH_JUDGE_MODEL="${HALLUSION_BENCH_JUDGE_MODEL:-qwen3-vl-plus-2025-09-23}"
 set -x
 
 EVAL_TIME=False
