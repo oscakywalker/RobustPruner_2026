@@ -158,7 +158,7 @@ def main() -> None:
     parser.add_argument(
         "--base-url",
         type=str,
-        default="https://dashscope.aliyuncs.com/compatible-mode/v1",
+        default="",
     )
     args = parser.parse_args()
 
@@ -171,8 +171,8 @@ def main() -> None:
     print(f"Loaded {len(question_rows)} question rows from {input_path}")
 
     client = OpenAI(
-        api_key="sk-c653b84b9d74460dbb8099eacca2a5ed",
-        base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+        api_key="",
+        base_url="",
     )
 
     for method in METHOD_SPECS:
