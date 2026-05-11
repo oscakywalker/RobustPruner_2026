@@ -43,8 +43,8 @@ METHOD_SPECS = [
 ]
 
 client = OpenAI(
-    api_key=os.environ.get("DASHSCOPE_API_KEY") or os.environ.get("OPENAI_API_KEY") or "sk-c653b84b9d74460dbb8099eacca2a5ed",
-    base_url=os.environ.get("DASHSCOPE_BASE_URL", "https://dashscope.aliyuncs.com/compatible-mode/v1"),
+    api_key=os.environ.get("DASHSCOPE_API_KEY") or os.environ.get("OPENAI_API_KEY"),
+    base_url=os.environ.get("DASHSCOPE_BASE_URL", ""),
 )
 
 
