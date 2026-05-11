@@ -7,12 +7,12 @@ import time
 
 # 初始化客户端
 client = OpenAI(
-    api_key="sk-c653b84b9d74460dbb8099eacca2a5ed",
-    base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+    api_key="sk",
+    base_url="",
 )
 
 # 输出文件路径
-OUTPUT_FILE = "/home/fjh/VisionSelector/lmms-eval/lmms_eval/tasks/gqa/text_perturbations_4.json"
+OUTPUT_FILE = ""
 
 def perturb_question(question):
     """使用API对问题进行同义替换"""
