@@ -29,8 +29,8 @@ try:
 except ImportError:
     eval_logger.warning("Failed to import llava modules")
 
-# ============ 剪枝常量 ============
-PRUNE_TARGET_LAYER = 20  # 0-based索引: 第21层
+# ============ Pruning constants ============
+PRUNE_TARGET_LAYER = 20  # Zero-based index: layer 21.
 
 
 def llava_model_forward_PaneltyPrune(
@@ -46,8 +46,8 @@ def llava_model_forward_PaneltyPrune(
     return_dict: Optional[bool] = None,
 ):
     """
-    LLaVA model forward with PaneltyPrune at Layer 21
-    适配 LLaMA-2 架构
+    Run the LLaVA forward pass with PaneltyPrune at layer 21.
+    Adapted for the LLaMA-2 architecture.
     """
     from transformers.modeling_outputs import BaseModelOutputWithPast
     
@@ -68,13 +68,13 @@ def llava_model_forward_PaneltyPrune(
             )
             use_cache = False
 
-    # 获取inputs_embeds
+    # Get inputs_embeds.
     if inputs_embeds is None:
         inputs_embeds = self.embed_tokens(input_ids)
 
     batch_size, seq_length = inputs_embeds.shape[:2]
 
-    # 处理position_ids
+    # Process position_ids.
     if position_ids is None:
         device = inputs_embeds.device
         position_ids = torch.arange(
@@ -82,13 +82,13 @@ def llava_model_forward_PaneltyPrune(
         )
         position_ids = position_ids.unsqueeze(0).view(-1, seq_length)
 
-    # 处理attention_mask
+    # Process attention_mask.
     if attention_mask is None:
         attention_mask = torch.ones(
             (batch_size, seq_length), dtype=torch.bool, device=inputs_embeds.device
         )
     
-    # 创建causal mask
+    # Create the causal mask.
     attention_mask = self._prepare_decoder_attention_mask(
         attention_mask, (batch_size, seq_length), inputs_embeds, 0
     )
@@ -99,25 +99,25 @@ def llava_model_forward_PaneltyPrune(
     all_self_attns = () if output_attentions else None
     next_decoder_cache = () if use_cache else None
 
-    # ============ 核心修改:在第21层前准备剪枝 ============
+    # ============ Prepare pruning before layer 21 ============
     for layer_idx, decoder_layer in enumerate(self.layers):
         if output_hidden_states:
             all_hidden_states += (hidden_states,)
 
-        # ========== 在目标层执行PaneltyPrune剪枝 ==========
-        # 关键:只在prefill阶段(seq_length > 1)执行剪枝
+        # ========== Apply PaneltyPrune at the target layer ==========
+        # Prune only during prefill (seq_length > 1).
         if (layer_idx == PRUNE_TARGET_LAYER and 
             seq_length > 1 and 
             batch_size == 1):
             
-            # 获取PaneltyPrune的mask和image_token_mask
+            # Get the PaneltyPrune mask and image_token_mask.
             robust_masks = getattr(self, '_robust_prune_masks', None)
             image_token_mask = getattr(self, '_image_token_mask', None)
             
             if robust_masks is not None and image_token_mask is not None:
                 eval_logger.debug(f"[PaneltyPrune] Applying pruning at layer {layer_idx} (Layer 21)")
                 
-                # 1. 使用image_token_mask定位图像区域
+                # 1. Locate the image region using image_token_mask.
                 image_token_mask_batch = image_token_mask[0]  # [seq_length]
                 image_positions = (image_token_mask_batch == True).nonzero(as_tuple=True)[0]
                 
@@ -131,19 +131,19 @@ def llava_model_forward_PaneltyPrune(
                         f"length={image_length}"
                     )
                     
-                    # 2. 获取第一个样本的mask
+                    # 2. Get the mask for the first sample.
                     token_mask = robust_masks[0]  # [total_image_tokens]
                     
                     if token_mask is not None and len(token_mask) == image_length:
-                        # 3. 构建keep_indices
+                        # 3. Build keep_indices.
                         device = hidden_states.device
                         
-                        # 选中的图像token的相对索引
+                        # Relative indices of the selected image tokens.
                         selected_image_indices = token_mask.nonzero(as_tuple=True)[0]
-                        # 转换为绝对索引
+                        # Convert to absolute indices.
                         selected_absolute_indices = selected_image_indices + image_start
                         
-                        # 拼接:文本前 + 选中图像 + 文本后
+                        # Concatenate text before the image, selected image tokens, and text after the image.
                         keep_indices = torch.cat([
                             torch.arange(image_start, device=device),
                             selected_absolute_indices,
@@ -161,17 +161,17 @@ def llava_model_forward_PaneltyPrune(
                             f"pruning {pruned_count} tokens"
                         )
                         
-                        # 4. 应用剪枝
+                        # 4. Apply pruning.
                         hidden_states = hidden_states[:, keep_indices, :]
                         
-                        # 更新attention_mask
+                        # Update attention_mask.
                         if attention_mask is not None:
                             attention_mask = attention_mask[:, :, :hidden_states.shape[1], :hidden_states.shape[1]]
                         
-                        # 更新position_ids
+                        # Update position_ids.
                         position_ids = position_ids[:, keep_indices]
                         
-                        # 更新seq_length
+                        # Update seq_length.
                         seq_length = hidden_states.shape[1]
                         
                         eval_logger.debug(
@@ -187,7 +187,7 @@ def llava_model_forward_PaneltyPrune(
                 else:
                     eval_logger.warning("[PaneltyPrune] No image tokens found in image_token_mask")
 
-        # ========== 正常的Layer Forward ==========
+        # ========== Standard layer forward pass ==========
         past_key_value = past_key_values[layer_idx] if past_key_values is not None else None
 
         if self.gradient_checkpointing and self.training:
@@ -241,10 +241,11 @@ def llava_model_forward_PaneltyPrune(
 @register_model("llava_v1_5_panelty_prune")
 class LLaVA_v1_5_PaneltyPrune(lmms):
     """
-    PaneltyPrune: 基于多次文本扰动统计选择稳定的视觉token
-    使用方差惩罚机制:score = avg - penalty × var
-    在第21层应用token剪枝
-    适配 LLaVA-v1.5-7B
+    PaneltyPrune selects stable visual tokens using statistics across
+    multiple text perturbations.
+    Apply a variance penalty: score = avg - penalty * var.
+    Prune tokens at layer 21.
+    Adapted for LLaVA-v1.5-7B.
     """
     
     def __init__(
@@ -256,8 +257,8 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
         use_cache: bool = True,
         attn_implementation: Optional[str] = None,
         base_ratio: str = "0.3",
-        keep_ratio: float = 0.15,  # 最终保留比例
-        variance_penalty: float = 10.0,  # 方差惩罚系数
+        keep_ratio: float = 0.15,  # Final token retention ratio.
+        variance_penalty: float = 10.0,  # Variance penalty coefficient.
         conv_template: str = "vicuna_v1",  # LLaVA conversation template
         **kwargs,
     ) -> None:
@@ -271,7 +272,7 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
         self.variance_penalty = variance_penalty
         self.conv_template = conv_template
         
-        # 构建输入目录路径 (需要根据实际情况修改)
+        # Build the input directory paths; adjust them for your environment.
         ROOT = Path("/mnt/nvme/fjh/llava-evaluation")
         ratio_str = f"{base_ratio:.1f}" if isinstance(base_ratio, float) else base_ratio
         base_path = ROOT / "visualization_text_perturb/gqa/text_perturb" / ratio_str
@@ -281,12 +282,12 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
             for i in range(0, 5)
         ]
         
-        # 验证路径
+        # Validate the paths.
         missing_dirs = [d for d in self.INPUT_DIRS if not d.exists()]
         if missing_dirs:
             eval_logger.warning(f"Missing {len(missing_dirs)} input directories")
         
-        # 初始化设备
+        # Initialize the device.
         accelerator = Accelerator()
         if accelerator.num_processes > 1:
             self._device = torch.device(f"cuda:{accelerator.local_process_index}")
@@ -295,7 +296,7 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
             self._device = torch.device(device)
             self.device_map = device_map if device_map else device
         
-        # 加载LLaVA模型
+        # Load the LLaVA model.
         eval_logger.info(f"Loading LLaVA model from {pretrained}")
         model_name = get_model_name_from_path(pretrained)
         
@@ -309,7 +310,7 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
         self._model.eval()
 
         # ============ Monkey patch LLM model ============
-        # LLaVA的语言模型是 model.model (LlamaModel)
+        # The LLaVA language model is model.model (LlamaModel).
         llm_model = self._model.model
         llm_model._orig_forward = llm_model.forward
         llm_model.forward = types.MethodType(llava_model_forward_PaneltyPrune, llm_model)
@@ -320,10 +321,10 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
         self.batch_size_per_gpu = int(batch_size)
         self.use_cache = use_cache
         
-        # 获取图像token ID (LLaVA使用IMAGE_TOKEN_INDEX)
+        # Get the image token ID; LLaVA uses IMAGE_TOKEN_INDEX.
         self.image_token_id = IMAGE_TOKEN_INDEX
         
-        # 处理分布式
+        # Set up distributed execution.
         if accelerator.num_processes > 1:
             assert accelerator.distributed_type in [
                 DistributedType.FSDP,
@@ -396,14 +397,14 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
         raise NotImplementedError("Loglikelihood is not implemented")
     
     def population_variance(self, values):
-        """计算总体方差"""
+        """Calculate the population variance."""
         if not values:
             return 0.0
         m = mean(values)
         return sum((x - m) ** 2 for x in values) / len(values)
     
     def extract_scores_from_mask_flat(self, data, fpath):
-        """从mask_flat提取scores"""
+        """Extract scores from mask_flat."""
         if "mask_flat" not in data:
             raise ValueError(f"'mask_flat' missing in {fpath}")
         
@@ -437,7 +438,7 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
         return scores
     
     def compute_token_stats(self, doc_id: int, task: str, split: str) -> Optional[dict]:
-        """计算每个token的平均分和方差"""
+        """Calculate the mean score and variance for each token."""
         filename = f"{task}_{split}_{doc_id}.json"
         token_score_lists = []
         
@@ -472,18 +473,18 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
     
     def select_stable_tokens(self, token_stats: dict, doc_id: int) -> List[int]:
         """
-        选择稳定的token - 使用方差惩罚后的综合分数
-        score = avg - variance_penalty × var
+        Select stable tokens using scores adjusted by a variance penalty.
+        score = avg - variance_penalty * var
         """
         if not token_stats:
             return []
         
-        # 1. 构建token列表并计算惩罚分数
+        # 1. Build the token list and calculate penalized scores.
         token_list = []
         for token_id_str, stats in token_stats.items():
             perturbation_0_score = stats["scores"][0]
             variance = stats["var"]
-            # 核心公式:综合分数 = 原始分数 - 惩罚系数 × 方差
+            # Combined score = original score - penalty coefficient * variance.
             penalized_score = perturbation_0_score - self.variance_penalty * variance
             
             token_list.append({
@@ -495,14 +496,14 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
         
         total_tokens = len(token_list)
         
-        # 2. 按综合分数降序排序
+        # 2. Sort by combined score in descending order.
         token_list_sorted = sorted(
             token_list, 
             key=lambda x: x["score"],
             reverse=True
         )
         
-        # 3. 选择前 keep_ratio 比例的token
+        # 3. Select the top keep_ratio fraction of tokens.
         final_count = max(1, int(total_tokens * self.keep_ratio))
         selected_tokens = token_list_sorted[:final_count]
         
@@ -517,7 +518,7 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
         return selected_indices
     
     def create_token_mask(self, selected_indices: List[int], total_tokens: int) -> torch.Tensor:
-        """创建布尔mask"""
+        """Create a boolean mask."""
         mask = torch.zeros(total_tokens, dtype=torch.bool)
         if selected_indices:
             mask[selected_indices] = True
@@ -525,8 +526,8 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
     
     def create_image_token_mask(self, input_ids: torch.Tensor) -> torch.Tensor:
         """
-        创建image_token_mask
-        True表示图像token,False表示文本token
+        Create image_token_mask.
+        True denotes an image token; False denotes a text token.
         """
         mask = torch.zeros_like(input_ids, dtype=torch.bool)
         mask[input_ids == self.image_token_id] = True
@@ -568,7 +569,7 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
                 until = [until]
             until = [item for item in until if item != "\n\n"]
             
-            # ========= PaneltyPrune: 计算token masks =========
+            # ========= PaneltyPrune: calculate token masks =========
             eval_logger.info(f"[PaneltyPrune] Processing batch with {len(doc_id)} samples")
             
             token_masks = []
@@ -592,12 +593,12 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
                     )
                     token_masks.append(None)
             
-            # 处理LLaVA输入
+            # Process the LLaVA inputs.
             input_ids_list = []
             image_tensor_list = []
             
             for i, context in enumerate(contexts):
-                # 处理图像
+                # Process the images.
                 image = visual_list[i][0] if visual_list[i] else None
                 
                 if image is not None:
@@ -609,13 +610,13 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
                         image_tensor = image_tensor[0]
                     image_tensor_list.append(image_tensor.to(self.device))
                     
-                    # 构建prompt (LLaVA使用<image>占位符)
+                    # Build the prompt using the LLaVA <image> placeholder.
                     if DEFAULT_IMAGE_TOKEN not in context:
                         context = DEFAULT_IMAGE_TOKEN + "\n" + context
                 else:
                     image_tensor_list.append(None)
                 
-                # 使用conversation template
+                # Use the conversation template.
                 conv = conv_templates[self.conv_template].copy()
                 conv.append_message(conv.roles[0], context)
                 conv.append_message(conv.roles[1], None)
@@ -631,19 +632,19 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
                 
                 input_ids_list.append(input_ids)
             
-            # ============ 创建image_token_mask ============
+            # ============ Create image_token_mask ============
             image_token_masks = []
             for input_ids in input_ids_list:
                 image_token_mask = self.create_image_token_mask(input_ids[0])
                 image_token_masks.append(image_token_mask)
             image_token_masks = torch.stack(image_token_masks)
             
-            # ============ 设置masks到LLM model ============
+            # ============ Set masks on the language model ============
             self.model.model._robust_prune_masks = token_masks
             self.model.model._image_token_mask = image_token_masks.to(self.device)
             eval_logger.info(f"[PaneltyPrune] Masks prepared ({len(token_masks)} masks)")
             
-            # 生成配置
+            # Generation configuration.
             default_gen_kwargs = {
                 "max_new_tokens": 128,
                 "temperature": 0.0,
@@ -659,7 +660,7 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
                 current_gen_kwargs["temperature"] = None
                 current_gen_kwargs["top_p"] = None
             
-            # 生成
+            # Generate the response.
             try:
                 with torch.inference_mode():
                     for idx, (input_ids, image_tensor) in enumerate(zip(input_ids_list, image_tensor_list)):
@@ -675,13 +676,13 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
                             pad_token_id=self.tokenizer.pad_token_id,
                         )
                         
-                        # 解码
+                        # Decode the response.
                         output = self.tokenizer.batch_decode(
                             output_ids, 
                             skip_special_tokens=True
                         )[0].strip()
                         
-                        # 处理until
+                        # Process the until stop sequences.
                         for term in until:
                             if len(term) > 0:
                                 output = output.split(term)[0]
@@ -694,7 +695,7 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
                 eval_logger.error(f"[PaneltyPrune] Generation failed: {e}")
                 raise
             finally:
-                # 清理masks
+                # Clear the masks.
                 if hasattr(self.model.model, '_robust_prune_masks'):
                     delattr(self.model.model, '_robust_prune_masks')
                 if hasattr(self.model.model, '_image_token_mask'):

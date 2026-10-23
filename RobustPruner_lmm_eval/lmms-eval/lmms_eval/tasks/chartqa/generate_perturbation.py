@@ -5,17 +5,17 @@ from datasets import load_dataset
 from tqdm import tqdm
 import time
 
-# 初始化客户端
+# Initialize the client.
 client = OpenAI(
     api_key="sk-",
     base_url="",
 )
 
-# 输出文件路径
+# Output file path.
 OUTPUT_FILE = ""
 
 def perturb_question(question):
-    """使用API对问题进行同义替换"""
+    """Use the API to rewrite a question with synonymous wording."""
     try:
         completion = client.chat.completions.create(
             model="qwen3-vl-plus-2025-09-23",
@@ -46,7 +46,7 @@ Question: {question}"""
         
         perturbed = full_content.strip()
         
-        # 清理可能的前缀
+        # Remove any response prefix.
         prefixes = ["rephrased question:", "rephrased:", "answer:"]
         for prefix in prefixes:
             if perturbed.lower().startswith(prefix):
@@ -69,28 +69,28 @@ def main():
     
     perturbations = {}
 
-    # tqdm 包裹整个 dataset
+    # Wrap the entire dataset with tqdm.
     for i, doc in enumerate(tqdm(dataset, desc="Paraphrasing", ncols=100)):
         question = doc["question"]
         
-        # 如果已存在，跳过
+        # Skip entries that already exist.
         if question in perturbations:
             continue
         
         perturbed = perturb_question(question)
         perturbations[question] = perturbed
         
-        # 每10个保存一次
+        # Save every 10 entries.
         if (i + 1) % 10 == 0:
             output_path = Path(OUTPUT_FILE)
             output_path.parent.mkdir(parents=True, exist_ok=True)
             with open(output_path, 'w', encoding='utf-8') as f:
                 json.dump(perturbations, f, ensure_ascii=False, indent=2)
 
-        # 避免API限流
+        # Avoid API rate limits.
         time.sleep(0.2)
     
-    # 最终保存
+    # Save the final results.
     output_path = Path(OUTPUT_FILE)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, 'w', encoding='utf-8') as f:

@@ -174,3 +174,34 @@ Then run:
 bash run_robustpruner_perturb_scores.sh
 ```
 If you would like to test other three question-style text-perturbed test sets (perturbations_{2,3,4}), and a brand-new imperative-sentence-style test-perturbed test set (perturbations_5), please replace the `perturbation_name` in the yaml file.
+
+### 4.4 Projected DPP marginal selection
+
+An independent inference entry point uses projected determinantal leverage
+scores to construct the candidate pool, followed by the same low-uncertainty
+refinement. The projected DPP-marginal alternative is a method to reduce the relatively high time and memory costs of constructing the full similarity matrix $S$ and performing sequential greedy MAP inference while maintaining close performances with original DPP selection.
+
+```bash
+cd /RobustPruner_2026/RobustPruner_lmm_eval/evaluation
+conda activate robustpruner_qwen
+
+MODEL_PATH=/path/to/Qwen2.5-VL-7B-Instruct \
+RP_MODULES_DIR=/path/to/robustpruner_checkpoint \
+bash run_robustpruner_qwen_dpp_marginal.sh
+```
+
+The script defaults to GQA at 10% retention. To change the original setting and evaluate all five benchmarks at 20% retention, set:
+
+```bash
+TASKS="ai2d_no_mask chartqa gqa mme ocrbench" BUDGETS="0.2" \
+MODEL_PATH=/path/to/Qwen2.5-VL-7B-Instruct \
+RP_MODULES_DIR=/path/to/robustpruner_checkpoint \
+bash run_robustpruner_qwen_dpp_marginal.sh
+```
+
+The model registration is `qwen2_5_vl_rp_dpp_marginal`, backed by
+`RobustPruner/transformers_rp_dpp_marginal/`. Model code defaults to the
+original greedy DPP selection when `GP_DPP_PROJECTED_MARGINAL` is unset.
+`run_robustpruner_qwen_dpp_marginal.sh` enables marginal selection by
+default through `GP_DPP_PROJECTED_MARGINAL=True`; setting it to `False`
+keeps greedy DPP selection.

@@ -778,12 +778,12 @@ class Qwen2_5_VL_with_token_compression_visual(lmms):
             if self.method == 'divprune':
                 for i, ans in enumerate(answers):
                     try:
-                        if True: # 确保只有主进程保存图片
+                        if True: # Save images only on the main process.
                             output_dir_for_task = os.path.join(final_visualization_dir, f"{task}_{self.method}_{self.budgets}")
                             os.makedirs(output_dir_for_task, exist_ok=True)
                             doc_id_val = doc_id[i][0] if isinstance(doc_id[i], tuple) else doc_id[i]
                             output_filename = os.path.join(output_dir_for_task, f"{task}_{doc_id_val}_divprune.png")
-                            # 调用 divprune 的可视化方法
+                            # Call the divprune visualization method.
                             self._plot_divprune_visualization(image=visual_list[i][0], output_filename=output_filename, question=contexts[i], model_answer=ans)
                     except Exception as e:
                         eval_logger.error(f"Failed to generate divprune visualization for doc_id {doc_id[i]}: {e}")

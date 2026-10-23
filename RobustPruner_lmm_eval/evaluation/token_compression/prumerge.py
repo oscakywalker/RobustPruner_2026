@@ -210,7 +210,7 @@ def qwen25vl_vision_tower_forward_prumerge_plus(self, hidden_states: torch.Tenso
     desired_layer_k = desired_layer_k.mean(dim=1).unsqueeze(0)  # shape: torch.Size([1, 580, 1280])
     k_C = desired_layer_k.shape[-1]
     cls_attn = torch.mean(attn_weights, dim=[0,1]).unsqueeze(0) # shape: torch.Size([1, 580])
-    #####新增#########
+    ##### Added #########
     cls_attn = cls_attn[:,reverse_indices]
     desired_layer_k = desired_layer_k[:,reverse_indices,:]
     ###################

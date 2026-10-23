@@ -46,17 +46,17 @@ fi
 ###########################################
 set -e
 
-# VSCAN模型路径
+# VSCAN model path.
 MODEL_PATH="/mnt/nvme/fjh/llava-v1.5-7b"
 MODEL_NAME="llava_v1_5_7b"
 
-# 输出根目录
+# Output root directory.
 ROOT_DIR="/mnt/nvme/fjh/llava-evaluation/vscan_ablation_results"
 
-# 任务配置
+# Task configuration.
 #TASKS=("gqa" "mme" "ai2d" "vizwiz_vqa")
 #PERTURB_NAME="text_perturb"
-# 固定保留的视觉 token 数量 & 对应 ratio（按索引一一对应）
+# Fixed retained visual token counts and corresponding ratios, matched by index.
 #KEEP_TOKENS=("87" "173" "260")
 #KEEP_RATIOS=("0.1" "0.2" "0.3")
 #LAYER_LIST=${LAYER_LIST:-"[21]"}
@@ -68,7 +68,7 @@ ROOT_DIR="/mnt/nvme/fjh/llava-evaluation/vscan_ablation_results"
 # Ablation
 TASKS=("mme")
 PERTURB_NAME="text_perturb"
-# 固定保留的视觉 token 数量 & 对应 ratio（按索引一一对应）
+# Fixed retained visual token counts and corresponding ratios, matched by index.
 KEEP_TOKENS=("576")
 KEEP_RATIOS=("1")
 LAYER_LIST=${LAYER_LIST:-"[21]"}
@@ -79,7 +79,7 @@ STAGE2_ADAPTIVE_LIST=(${STAGE2_ADAPTIVE_LIST:-false})
 # Alpha grids
 VISION_ALPHAS=(${VISION_ALPHAS:-0})
 LLM_ALPHAS=(${LLM_ALPHAS:-0})
-# 多卡设置
+# Configuration for multiple GPUs.
 NUM_PROCESSES=${ngpus}
 MASTER_PORT=29523
 EVAL_TIME=false

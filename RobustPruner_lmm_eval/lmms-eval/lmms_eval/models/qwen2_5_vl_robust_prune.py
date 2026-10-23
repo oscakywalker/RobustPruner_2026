@@ -28,8 +28,8 @@ try:
 except ImportError:
     eval_logger.warning("Failed to import qwen_vl_utils")
 
-# ============ 剪枝常量 ============
-PRUNE_TARGET_LAYER = 20  # 0-based: 第21层
+# ============ Pruning constants ============
+PRUNE_TARGET_LAYER = 20  # Zero-based index: layer 21.
 
 def qwen25vl_model_forward_robustprune(
     self,
@@ -79,7 +79,7 @@ def qwen25vl_model_forward_robustprune(
             past_seen_tokens, past_seen_tokens + inputs_embeds.shape[1], device=inputs_embeds.device
         )
 
-    # 处理position_ids
+    # Process position_ids.
     if position_ids is None:
         position_ids = cache_position.view(1, 1, -1).expand(3, inputs_embeds.shape[0], -1)
     elif position_ids.dim() == 2:
@@ -96,25 +96,25 @@ def qwen25vl_model_forward_robustprune(
     all_self_attns = () if output_attentions else None
     next_decoder_cache = None
 
-    # ============ 核心修改：在第21层前准备剪枝 ============
+    # ============ Prepare pruning before layer 21 ============
     for layer_idx, decoder_layer in enumerate(self.layers):
         if output_hidden_states:
             all_hidden_states += (hidden_states,)
 
-        # ========== 在目标层执行RobustPrune剪枝 ==========
-        # 关键修复：只在prefill阶段（seq_length > 1）执行剪枝
+        # ========== Apply RobustPrune at the target layer ==========
+        # Prune only during prefill (seq_length > 1).
         if (layer_idx == PRUNE_TARGET_LAYER and 
             seq_length > 1 and 
-            batch_size == 1):  # FastV也要求batch_size=1
+            batch_size == 1):  # FastV also requires batch_size=1.
             
-            # 获取RobustPrune的mask和text_image_mask
+            # Get the RobustPrune mask and text_image_mask.
             robust_masks = getattr(self, '_robust_prune_masks', None)
             text_image_mask = getattr(self, '_text_image_mask', None)
             
             if robust_masks is not None and text_image_mask is not None:
                 eval_logger.debug(f"[RobustPrune] Applying pruning at layer {layer_idx}")
                 
-                # 1. 使用text_image_mask定位图像区域（参考FastV）
+                # 1. Locate the image region using text_image_mask, as in FastV.
                 text_image_mask_batch = text_image_mask[0]  # [seq_length]
                 image_positions = (text_image_mask_batch == False).nonzero(as_tuple=True)[0]
                 
@@ -128,23 +128,23 @@ def qwen25vl_model_forward_robustprune(
                         f"length={image_length}"
                     )
                     
-                    # 2. 获取第一个样本的mask（假设batch_size=1）
+                    # 2. Get the mask for the first sample (assuming batch_size=1).
                     token_mask = robust_masks[0]  # [total_image_tokens]
                     
                     if token_mask is not None and len(token_mask) == image_length:
-                        # 3. 构建keep_indices（仿照FastV）
+                        # 3. Build keep_indices following FastV.
                         device = hidden_states.device
                         
-                        # 选中的图像token的相对索引
+                        # Relative indices of the selected image tokens.
                         selected_image_indices = token_mask.nonzero(as_tuple=True)[0]
-                        # 转换为绝对索引
+                        # Convert to absolute indices.
                         selected_absolute_indices = selected_image_indices + image_start
                         
-                        # 拼接：文本前 + 选中图像 + 文本后
+                        # Concatenate text before the image, selected image tokens, and text after the image.
                         keep_indices = torch.cat([
-                            torch.arange(image_start, device=device),           # 图像前的文本
-                            selected_absolute_indices,                          # 选中的图像token
-                            torch.arange(image_end + 1, seq_length, device=device)  # 图像后的文本
+                            torch.arange(image_start, device=device),           # Text before the image.
+                            selected_absolute_indices,                          # Selected image tokens.
+                            torch.arange(image_end + 1, seq_length, device=device)  # Text after the image.
                         ])
                         keep_indices = keep_indices.sort().values
                         
@@ -158,14 +158,14 @@ def qwen25vl_model_forward_robustprune(
                             f"pruning {pruned_count} tokens"
                         )
                         
-                        # 4. 应用剪枝
+                        # 4. Apply pruning.
                         hidden_states = hidden_states[:, keep_indices, :]
                         
-                        # 更新causal_mask
+                        # Update causal_mask.
                         if causal_mask is not None:
                             causal_mask = causal_mask[:, :, :hidden_states.shape[1], :hidden_states.shape[1]]
                         
-                        # 更新position_ids和position_embeddings
+                        # Update position_ids and position_embeddings.
                         position_ids = position_ids[:, :, keep_indices]
                         position_embeddings = self.rotary_emb(hidden_states, position_ids)
                         
@@ -173,8 +173,8 @@ def qwen25vl_model_forward_robustprune(
                             f"[RobustPrune] After pruning: hidden_states.shape={hidden_states.shape}"
                         )
                         
-                        # ====== 关键修复：剪枝后不清除mask，让decode阶段能使用剪枝后的KV cache ======
-                        # 不删除mask，保持剪枝效果
+                        # Keep the pruned mask so decoding can use the pruned KV cache.
+                        # Retain the mask to preserve the effect of pruning.
                         
                     else:
                         eval_logger.warning(
@@ -185,7 +185,7 @@ def qwen25vl_model_forward_robustprune(
                 else:
                     eval_logger.warning("[RobustPrune] No image tokens found in text_image_mask")
 
-        # ========== 正常的Layer Forward ==========
+        # ========== Standard layer forward pass ==========
         if self.gradient_checkpointing and self.training:
             layer_outputs = self._gradient_checkpointing_func(
                 decoder_layer.__call__,
@@ -238,8 +238,9 @@ def qwen25vl_model_forward_robustprune(
 @register_model("RobustPrune")
 class Qwen2_5_VL_RobustPrune(lmms):
     """
-    RobustPrune: 基于多次文本扰动统计选择稳定的视觉token
-    在第21层应用token剪枝（仿照FastV）
+    RobustPrune selects stable visual tokens using statistics across
+    multiple text perturbations.
+    Prune tokens at layer 21 following FastV.
     """
     
     def __init__(
@@ -270,7 +271,7 @@ class Qwen2_5_VL_RobustPrune(lmms):
         self.stable_ratio = stable_ratio
         self.final_keep_ratio = top_avg_ratio * stable_ratio
         
-        # 构建6个输入目录路径
+        # Build the six input directory paths.
         ROOT = Path("/mnt/nvme/fjh/qwen-evaluation")
         ratio_str = f"{base_ratio:.1f}" if isinstance(base_ratio, float) else base_ratio
         base_path = ROOT / "visualization_text_perturb/chartqa/text_perturb" / ratio_str
@@ -280,12 +281,12 @@ class Qwen2_5_VL_RobustPrune(lmms):
             for i in range(0, 6)
         ]
         
-        # 验证路径
+        # Validate the paths.
         missing_dirs = [d for d in self.INPUT_DIRS if not d.exists()]
         if missing_dirs:
             eval_logger.warning(f"Missing {len(missing_dirs)} input directories")
         
-        # 初始化设备
+        # Initialize the device.
         accelerator = Accelerator()
         if accelerator.num_processes > 1:
             self._device = torch.device(f"cuda:{accelerator.local_process_index}")
@@ -294,7 +295,7 @@ class Qwen2_5_VL_RobustPrune(lmms):
             self._device = torch.device(device)
             self.device_map = device_map if device_map else device
         
-        # 加载模型
+        # Load the model.
         model_kwargs = {
             "torch_dtype": "auto",
             "device_map": self.device_map,
@@ -312,7 +313,7 @@ class Qwen2_5_VL_RobustPrune(lmms):
         llm_model.forward = types.MethodType(qwen25vl_model_forward_robustprune, llm_model)
         eval_logger.info("[RobustPrune] Patched LLM model forward for layer-21 pruning")
         
-        # 初始化processor
+        # Initialize the processor.
         self.processor = AutoProcessor.from_pretrained(
             pretrained, 
             max_pixels=max_pixels, 
@@ -335,12 +336,12 @@ class Qwen2_5_VL_RobustPrune(lmms):
         self.batch_size_per_gpu = int(batch_size)
         self.use_cache = use_cache
         
-        # 获取图像token ID
+        # Get the image token ID.
         self.image_token_id = self.processor.tokenizer.convert_tokens_to_ids("<|image_pad|>")
         self.vision_start_token_id = self.processor.tokenizer.convert_tokens_to_ids("<|vision_start|>")
         self.vision_end_token_id = self.processor.tokenizer.convert_tokens_to_ids("<|vision_end|>")
         
-        # 处理分布式
+        # Set up distributed execution.
         if accelerator.num_processes > 1:
             assert accelerator.distributed_type in [
                 DistributedType.FSDP,
@@ -412,14 +413,14 @@ class Qwen2_5_VL_RobustPrune(lmms):
         raise NotImplementedError("Loglikelihood is not implemented")
     
     def population_variance(self, values):
-        """计算总体方差"""
+        """Calculate the population variance."""
         if not values:
             return 0.0
         m = mean(values)
         return sum((x - m) ** 2 for x in values) / len(values)
     
     def extract_scores_from_mask_flat(self, data, fpath):
-        """从mask_flat提取scores"""
+        """Extract scores from mask_flat."""
         if "mask_flat" not in data:
             raise ValueError(f"'mask_flat' missing in {fpath}")
         
@@ -487,7 +488,7 @@ class Qwen2_5_VL_RobustPrune(lmms):
         return token_stats
     
     def select_stable_tokens(self, token_stats: dict, doc_id: int) -> List[int]:
-        """选择稳定的token"""
+        """Select stable tokens."""
         if not token_stats:
             return []
         
@@ -527,7 +528,7 @@ class Qwen2_5_VL_RobustPrune(lmms):
         return selected_indices
     
     def create_token_mask(self, selected_indices: List[int], total_tokens: int) -> torch.Tensor:
-        """创建布尔mask"""
+        """Create a boolean mask."""
         mask = torch.zeros(total_tokens, dtype=torch.bool)
         if selected_indices:
             mask[selected_indices] = True
@@ -535,8 +536,8 @@ class Qwen2_5_VL_RobustPrune(lmms):
     
     def create_text_image_mask(self, input_ids: torch.Tensor) -> torch.Tensor:
         """
-        创建text_image_mask（参考FastV）
-        True表示文本token，False表示图像token
+        Create text_image_mask following FastV.
+        True denotes a text token; False denotes an image token.
         """
         mask = torch.ones_like(input_ids, dtype=torch.bool)
         mask[input_ids == self.image_token_id] = False
@@ -617,7 +618,7 @@ class Qwen2_5_VL_RobustPrune(lmms):
                 })
                 batched_messages.append(message)
             
-            # 处理输入
+            # Process the inputs.
             texts = [
                 self.processor.apply_chat_template(
                     msg, tokenize=False, add_generation_prompt=True
@@ -633,7 +634,7 @@ class Qwen2_5_VL_RobustPrune(lmms):
                     indices = np.append(indices, total_frames - 1)
                 video_inputs[0] = video_inputs[0][indices]
             
-            # ========= RobustPrune: 计算token masks =========
+            # ========= RobustPrune: calculate token masks =========
             eval_logger.info(f"[RobustPrune] Processing batch with {len(doc_id)} samples")
             
             token_masks = []
@@ -656,7 +657,7 @@ class Qwen2_5_VL_RobustPrune(lmms):
                     )
                     token_masks.append(None)
             
-            # 调用processor
+            # Call the processor.
             inputs = self.processor(
                 text=texts,
                 images=image_inputs,
@@ -665,25 +666,25 @@ class Qwen2_5_VL_RobustPrune(lmms):
                 return_tensors="pt"
             )
             
-            # 移动到设备
+            # Move inputs to the device.
             if self.device_map == "auto":
                 inputs = inputs.to("cuda")
             else:
                 inputs = inputs.to(self.device)
             
-            # ============ 创建text_image_mask（参考FastV）============
+            # ============ Create text_image_mask following FastV ============
             text_image_masks = []
             for i in range(inputs.input_ids.shape[0]):
                 text_image_mask = self.create_text_image_mask(inputs.input_ids[i])
                 text_image_masks.append(text_image_mask)
             text_image_masks = torch.stack(text_image_masks)
             
-            # ============ 设置masks到LLM model ============
+            # ============ Set masks on the language model ============
             self.model.model._robust_prune_masks = token_masks
             self.model.model._text_image_mask = text_image_masks.to(self.device)
             eval_logger.info(f"[RobustPrune] Masks prepared ({len(token_masks)} masks)")
             
-            # 生成配置
+            # Generation configuration.
             default_gen_kwargs = {
                 "max_new_tokens": 128,
                 "temperature": 0.0,
@@ -699,7 +700,7 @@ class Qwen2_5_VL_RobustPrune(lmms):
                 current_gen_kwargs["temperature"] = None
                 current_gen_kwargs["top_p"] = None
             
-            # 生成
+            # Generate the response.
             try:
                 with torch.inference_mode():
                     cont = self.model.generate(
@@ -715,21 +716,21 @@ class Qwen2_5_VL_RobustPrune(lmms):
                     )
             except Exception as e:
                 eval_logger.error(f"[RobustPrune] Generation failed: {e}")
-                # 清理masks（异常情况）
+                # Clear masks after an exception.
                 if hasattr(self.model.model, '_robust_prune_masks'):
                     delattr(self.model.model, '_robust_prune_masks')
                 if hasattr(self.model.model, '_text_image_mask'):
                     delattr(self.model.model, '_text_image_mask')
                 raise
             
-            # 清理masks（正常完成后）
+            # Clear masks after successful completion.
             if hasattr(self.model.model, '_robust_prune_masks'):
                 delattr(self.model.model, '_robust_prune_masks')
             if hasattr(self.model.model, '_text_image_mask'):
                 delattr(self.model.model, '_text_image_mask')
             eval_logger.debug("[RobustPrune] Masks cleared")
             
-            # 解码
+            # Decode the response.
             generated_ids_trimmed = [
                 out_ids[len(in_ids):] 
                 for in_ids, out_ids in zip(inputs.input_ids, cont)

@@ -1670,7 +1670,7 @@ class LLaVAOneVision1_5_TextModel(Qwen2VLPreTrainedModel):
         # the hard coded `3` is for temporal, height and width.
         if position_ids is None:
             position_ids = cache_position.view(1, 1, -1).expand(3, inputs_embeds.shape[0], -1)
-        # elif position_ids.dim() == 2: # 这是为了3drope准备的
+        # elif position_ids.dim() == 2: # Reserved for 3D RoPE.
         #     position_ids = position_ids[None, ...].expand(3, position_ids.shape[0], -1)
         causal_mask = self._update_causal_mask(
             attention_mask, inputs_embeds, cache_position, past_key_values, output_attentions

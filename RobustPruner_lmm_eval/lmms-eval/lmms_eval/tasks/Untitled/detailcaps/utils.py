@@ -56,10 +56,10 @@ def detailcaps_process_result(doc, result):
 
 
 def check_if_context_is_set(expected_context="spawn"):
-    # 获取默认上下文的名称
+    # Get the name of the default context.
     default_context_name = mp.get_context().get_start_method()
 
-    # 检查当前上下文是否与预期的上下文相匹配
+    # Check whether the current context matches the expected context.
     is_set_to_expected = default_context_name == expected_context
 
     return is_set_to_expected

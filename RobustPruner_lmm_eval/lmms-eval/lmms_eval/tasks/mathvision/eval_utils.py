@@ -1,7 +1,7 @@
 import json
 import os
 import re
-import time  # 引入time模块
+import time  # Import the time module.
 from copy import deepcopy
 from math import *
 

@@ -74,29 +74,29 @@ def av_odyssey_doc_to_visual(doc):
     video_data = []
     result = []
 
-    # 处理 image 类型数据
+    # Process image data.
     if "image" in doc["data_type"]:
         for relative_path in doc["image_path"]:
             abs_path = os.path.join(cache_dir, relative_path)
             if os.path.exists(abs_path):
-                image_data.append(abs_path)  # 保留路径以供后续处理
+                image_data.append(abs_path)  # Preserve the path for subsequent processing.
             else:
                 print(f"Image path does not exist: {abs_path}")
 
-    # 处理 video 类型数据
+    # Process video data.
     elif "video" in doc["data_type"]:
         for relative_path in doc["video_path"]:
             abs_path = os.path.join(cache_dir, relative_path)
             if os.path.exists(abs_path):
-                video_data.append(abs_path)  # 保留路径以供后续处理
+                video_data.append(abs_path)  # Preserve the path for subsequent processing.
             else:
                 print(f"Video path does not exist: {abs_path}")
 
-    # 处理 audio 类型数据
+    # Process audio data.
     for relative_path in doc["audio_path"]:
         abs_path = os.path.join(cache_dir, relative_path)
         if os.path.exists(abs_path):
-            audio_data.append(abs_path)  # 保留路径以供后续处理
+            audio_data.append(abs_path)  # Preserve the path for subsequent processing.
         else:
             print(f"Audio path does not exist: {abs_path}")
 
@@ -233,32 +233,32 @@ def av_odyssey_aggregate_results(results):
             category2score[category][question_id] = []
         category2score[category][question_id].append(score)
 
-    # 计算每个 category 的平均分
+    # Calculate the mean score for each category.
     category_avg_scores = {}
     total_score = 0
     total_questions = 0
 
-    # 遍历所有 category 来计算每个 category 的平均分
+    # Iterate over categories to calculate their mean scores.
     for category, questions in category2score.items():
         # import pdb
         # pdb.set_trace()
-        category_total = 0  # 计算所有问题的总分
+        category_total = 0  # Calculate the total score across all questions.
         for question_id, score in questions.items():
-            category_total += score[0]  # 累加所有问题的平均分
-        category_avg_scores[category] = category_total / len(questions) * 100.0  # 当前类别的平均分
+            category_total += score[0]  # Accumulate the mean scores of all questions.
+        category_avg_scores[category] = category_total / len(questions) * 100.0  # Mean score for the current category.
 
-        total_score += category_total  # 累加所有类别的问题总分
-        total_questions += len(questions)  # 累加所有问题的数量
+        total_score += category_total  # Accumulate the question scores across all categories.
+        total_questions += len(questions)  # Accumulate the total number of questions.
 
-    # 计算所有问题的平均分（按问题的总数来平均）
+    # Calculate the overall mean, weighted by the number of questions.
     overall_avg_score = total_score / total_questions * 100.0
 
-    # 输出每个 category 的平均分
+    # Print the mean score for each category.
     print("Average scores per category:")
     for category, avg_score in category_avg_scores.items():
         print(f"{category}: {avg_score:.2f}")
 
-    # 输出所有问题的平均分
+    # Print the overall mean score across all questions.
     print(f"Overall average score (across all questions): {overall_avg_score:.2f}")
 
     return overall_avg_score

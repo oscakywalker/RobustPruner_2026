@@ -530,7 +530,7 @@ if __name__ == '__main__':
 
         print("\n--- Third run (All Loggers enabled) ---")
         with time_logger_enabled(), memory_logger_enabled():
-            for _ in range(3): # 多次运行以计算平均值
+            for _ in range(3): # Run multiple times to calculate the average.
                  result = gpu_intensive_task(a, b)
 
         print("Time Stats:", get_all_time_logger_stats(called_only=True))

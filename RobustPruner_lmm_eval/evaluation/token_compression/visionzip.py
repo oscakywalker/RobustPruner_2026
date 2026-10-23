@@ -168,7 +168,7 @@ def qwen25vl_vision_tower_forward_visionzip(self, hidden_states: torch.Tensor, g
     metric = metric.mean(dim=2).mean(dim=0)   # shape:torch.Size([580, 80])
     total_token_num = metric.shape[0]
 
-    #####新增#######
+    ##### Added #######
     attention_sum = attention_sum[reverse_indices]
     metric = metric[reverse_indices,:]
 

@@ -362,21 +362,21 @@ def single_choice(query, img_path, gt_resp, pred_resp, **kwargs):
         one_gt_resp = one_gt_resp.strip().upper()
 
         patterns = [
-            # 匹配 "Answer: A", "The answer is A", "The correct option is: A" 等格式
-            # re.IGNORECASE 忽略大小写
+            # Match formats such as "Answer: A", "The answer is A", and "The correct option is: A".
+            # re.IGNORECASE makes matching case-insensitive.
             r'(?:(?:the|my|the correct)\s+)?(?:answer|choice|option)\s*(?:is)?\s*[:：]?\s*([A-Z])',
             
-            # 匹配被括号包围的答案, e.g., "(A)"
+            # Match answers enclosed in parentheses, e.g., "(A)".
             r'\(([A-Z])\)',
 
-            # 匹配以句号或右括号结尾的答案, e.g., "A." or "A)"
-            # \b 是单词边界，确保不会匹配到单词中间的字母，例如从 "U.S.A." 中错误提取 "A"
+            # Match answers followed by a period or closing parenthesis, e.g., "A." or "A)".
+            # \b marks a word boundary to avoid extracting letters within words, such as "A" in "U.S.A.".
             r'\b([A-Z])[\.\)]',
 
-            # 匹配字符串开头的大写字母, e.g., "A. The cat is on the mat"
+            # Match an uppercase letter at the start, e.g., "A. The cat is on the mat".
             r'^([A-Z])\b',
             
-            # 作为最后的手段，匹配文本中第一个独立的单个大写字母
+            # As a final fallback, match the first standalone uppercase letter.
             r'\b([A-Z])\b'
         ]
 
@@ -387,7 +387,7 @@ def single_choice(query, img_path, gt_resp, pred_resp, **kwargs):
                 extracted_ans = match.group(1).upper()
                 break
         
-        # 比较提取出的答案和标准答案
+        # Compare the extracted answer with the reference answer.
         if extracted_ans and extracted_ans == one_gt_resp:
             scores.append(1)
         else:
@@ -565,7 +565,7 @@ def process_batch_data_by_api(batch_data, bid, args):
     if not os.path.exists(tmp_out_path):
         client = OpenAI(
             api_key=os.getenv("DASHSCOPE_API_KEY"),
-            base_url="https://dashscope.aliyuncs.com/compatible-mode/v1"  # 百炼服务的base_url
+            base_url="https://dashscope.aliyuncs.com/compatible-mode/v1"  # Base URL for the DashScope service.
         )
         if args.batch_id is not None:
             batch_id = args.batch_id

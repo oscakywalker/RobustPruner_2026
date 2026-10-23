@@ -5,7 +5,7 @@ from rouge import Rouge
 def get_requery_score(prediction, gt):
     score_dict = dict()
 
-    # 计算BLEUBLEU分数
+    # Calculate the BLEU score.
     smoothing_function = SmoothingFunction().method1  # * used to deal with non-overlap n-gram
 
     # calculate BLEU-1 score with smoothing function

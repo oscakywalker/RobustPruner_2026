@@ -216,7 +216,7 @@ class LlavaLlamaGP(lmms):
         raise NotImplementedError(f"Loglikelihood is not implemented for {self.__class__.__name__}")
 
     def _prepare_images(self, visuals):
-        """ChartQA / lmms-eval 的 visual 可能是 str / PIL / dict / list[dict]"""
+        """ChartQA / lmms-eval visuals may be str, PIL images, dict, or list[dict]."""
         images: List[Image.Image] = []
         for visual in visuals:
             if visual is None:
@@ -367,7 +367,7 @@ class LlavaLlamaGP(lmms):
                     if hasattr(out, "image_token_mask_logits") and out.image_token_mask_logits is not None:
                         soft_masks = out.image_token_mask_logits
 
-                        # 兼容 tensor / list-like
+                        # Support both tensors and list-like values.
                         if isinstance(soft_masks, torch.Tensor):
                             batch_iter = range(soft_masks.shape[0])
                             get_one = lambda b: soft_masks[b]
@@ -379,7 +379,7 @@ class LlavaLlamaGP(lmms):
                             try:
                                 one_image_masks = get_one(b)
 
-                                # 某些实现可能是 list[step]，取最后一步
+                                # Some implementations return list[step]; use the final step.
                                 if isinstance(one_image_masks, list):
                                     if len(one_image_masks) == 0:
                                         continue

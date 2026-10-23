@@ -139,10 +139,10 @@ def mme_realworld_process_results(doc, results):
 
 
 def get_correct_answer(sample):
-    # 替换全角括号为半角括号
+    # Replace fullwidth parentheses with halfwidth parentheses.
     sample["multi-choice options"] = [option.replace("（", "(").replace("）", ")") for option in sample["multi-choice options"]]
 
-    # 提取正确答案选项
+    # Extract the correct answer option.
     correct_answer = next(option.split(") ")[1] for option in sample["multi-choice options"] if option.startswith(f"({sample['answer']})"))
     return correct_answer
 
