@@ -28,7 +28,7 @@ lmms_eval_specific_kwargs:
     pre_prompt: ""
     post_prompt: "\nAnswer the question using a single word or phrase."
     text_perturb: false
-    #perturbation_name: "perturbations_1"
+    #perturbation_name: "perturbations_0"
   qwen_vl:
     pre_prompt: ""
     post_prompt: " Answer:"
