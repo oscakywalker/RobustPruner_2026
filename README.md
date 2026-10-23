@@ -173,3 +173,4 @@ Then run:
 ```bash
 bash run_robustpruner_perturb_scores.sh
 ```
+If you would like to test other three question-style text-perturbed test sets (perturbations_{2,3,4}), and a brand-new imperative-sentence-style test-perturbed test set (perturbations_5), please replace the `perturbation_name` in the yaml file.
