@@ -23,7 +23,7 @@ lmms_eval_specific_kwargs:
     pre_prompt: ""
     post_prompt: ""
     text_perturb: false
-    #perturbation_name: "perturbations_4"
+    #perturbation_name: "perturbations_0"
   plm:
     pre_prompt: ""
     post_prompt: "\nProvide a short and direct response."
