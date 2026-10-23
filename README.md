@@ -205,3 +205,15 @@ original greedy DPP selection when `GP_DPP_PROJECTED_MARGINAL` is unset.
 `run_robustpruner_qwen_dpp_marginal.sh` enables marginal selection by
 default through `GP_DPP_PROJECTED_MARGINAL=True`; setting it to `False`
 keeps greedy DPP selection.
+
+## 5 Citation
+
+If you find CDPruner useful for your research and applications, please cite using this BibTeX:
+```bibtex
+@inproceedings{zhu2026robustpruner,
+  title = {RobustPruner: Decoupled Relevance and Uncertainty for Efficient Visual Token Pruning in MLLMs},
+  author = {Zhu, Hanwei and Fu, Junhan and Zhang, Xi and Wang, Jiamang and Lin, Weisi},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2026},
+}
+```
