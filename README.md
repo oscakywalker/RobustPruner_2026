@@ -1,6 +1,16 @@
-# RobustPruner
+# RobustPruner: Decoupled Relevance and Uncertainty for Efficient Visual Token Pruning in MLLMs
 
-## 1. Qwen2.5-VL Environment
+[📄 [Paper](https://github.com/oscakywalker/RobustPruner_2026/main)] [🌐 [Project Page](https://oscakywalker.github.io/RobustPruner_2026/)]
+
+## 📰 News
+
+🔥 **[2026/10/28]** Our [Project Page](https://oscakywalker.github.io/RobustPruner_2026/) is updated!
+
+🔥 **[2026/09/25]** Our [CDPruner](https://github.com/oscakywalker/RobustPruner_2026/main) is accepted by NeurIPS 2026! 🎉
+
+## ⚙️ Setup
+
+### 1. Qwen2.5-VL Environment
 
 Use the `robustpruner_qwen` environment.
 
@@ -23,7 +33,7 @@ You may also need:
 
 These packages are useful for evaluation and quick testing. If needed, download the [Qwen2.5-VL](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct) model in the same environment.
 
-## 2. Data Download
+### 2. Data Download
 
 Training data uses the [Visual-CoT](https://huggingface.co/datasets/deepcs233/Visual-CoT/tree/main) dataset.
 
@@ -46,7 +56,7 @@ cd /RobustPruner_2026/RobustPruner
 ls datas/cot/gqa | head
 ```
 
-## 3. Prepared GQA Files
+### 3. Prepared GQA Files
 
 We already prepared a 20k random GQA subset and four text perturbation files. They are stored at:
 
@@ -58,9 +68,9 @@ We already prepared a 20k random GQA subset and four text perturbation files. Th
 /RobustPruner_2026/RobustPruner/uncertainty_dataset_construction/text_perturbations_advanced_vocabulary.json
 ```
 
-## 4. Qwen Inference and Training
+### 4. Qwen Inference and Training
 
-### 4.1 Build uncertainty training data
+#### 4.1 Build uncertainty training data
 
 Run the script for the original data:
 
@@ -107,7 +117,7 @@ After the token scores are ready, open `gqa_layer_qwen_similarity.ipynb`. This n
 /RobustPruner_2026/RobustPruner/glimpse_qwen_eval/token_scores/layer12_token_stats_per_doc
 ```
 
-### 4.2 Training
+#### 4.2 Training
 
 The current training script is:
 
@@ -136,7 +146,7 @@ The default training output directory is:
 /RobustPruner_2026/RobustPruner/output/qwen2_5_7b_rp_uncertainty_stage1_unbind_layer12_newest_testy
 ```
 
-### 4.3 Evaluation
+#### 4.3 Evaluation
 
 Basic evaluation:
 
@@ -175,7 +185,7 @@ bash run_robustpruner_perturb_scores.sh
 ```
 If you would like to test other three question-style text-perturbed test sets (perturbations_{2,3,4}), and a brand-new imperative-sentence-style test-perturbed test set (perturbations_5), please replace the `perturbation_name` in the yaml file.
 
-### 4.4 Projected DPP marginal selection
+#### 4.4 Projected DPP marginal selection
 
 An independent inference entry point uses projected determinantal leverage
 scores to construct the candidate pool, followed by the same low-uncertainty
@@ -206,7 +216,7 @@ original greedy DPP selection when `GP_DPP_PROJECTED_MARGINAL` is unset.
 default through `GP_DPP_PROJECTED_MARGINAL=True`; setting it to `False`
 keeps greedy DPP selection.
 
-## 5 Citation
+### 5 Citation
 
 If you find CDPruner useful for your research and applications, please cite using this BibTeX:
 ```bibtex
