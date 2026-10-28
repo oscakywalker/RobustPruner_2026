@@ -1,12 +1,12 @@
 # RobustPruner: Decoupled Relevance and Uncertainty for Efficient Visual Token Pruning in MLLMs
 
-[📄 [Paper](https://github.com/oscakywalker/RobustPruner_2026/main)] [🌐 [Project Page](https://oscakywalker.github.io/RobustPruner_2026/)]
+[📄 [Paper](https://github.com/oscakywalker/RobustPruner_2026/tree/main)] [🌐 [Project Page](https://oscakywalker.github.io/RobustPruner_2026/)]
 
 ## 📰 News
 
-🔥 **[2026/10/28]** Our [Project Page](https://oscakywalker.github.io/RobustPruner_2026/) is updated!
+🔥 **[2026/10/28]** Our [RobustPruner Project Page](https://oscakywalker.github.io/RobustPruner_2026/) is updated!
 
-🔥 **[2026/09/25]** Our [CDPruner](https://github.com/oscakywalker/RobustPruner_2026/main) is accepted by NeurIPS 2026! 🎉
+🔥 **[2026/09/25]** [RobustPruner](https://github.com/oscakywalker/RobustPruner_2026/tree/main) is accepted by NeurIPS 2026! 🎉
 
 ## ⚙️ Setup
 
