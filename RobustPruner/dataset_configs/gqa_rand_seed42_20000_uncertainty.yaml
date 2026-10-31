@@ -12,5 +12,5 @@ datasets:
       - uncertainty_dataset_construction/text_perturbations_sentence_structure_change.json
       - uncertainty_dataset_construction/text_perturbations_synonym_replacement.json
     query_perturbation_replace_ratio: 0.3
-    uncertainty_dir: /RobustPruner_2026/RobustPruner/glimpse_qwen_eval/token_scores/layer12_token_stats_per_doc
+    uncertainty_dir: /RobustPruner_2026/RobustPruner/robustpruner_qwen_eval/token_scores/layer12_token_stats_per_doc
     uncertainty_target: simi_var
