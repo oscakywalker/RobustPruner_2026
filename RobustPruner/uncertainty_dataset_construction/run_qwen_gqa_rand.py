@@ -16,8 +16,8 @@ except ImportError as e:
 
 PROJECT_ROOT = Path("/RobustPruner_2026/RobustPruner")
 DEFAULT_INPUT_JSONL = str(PROJECT_ROOT / "uncertainty_dataset_construction" / "gqa_rand_seed42_20000.jsonl")
-DEFAULT_OUTPUT_JSONL = str(PROJECT_ROOT / "glimpse_qwen_eval" / "gqa_rand_seed42_20000_predictions.jsonl")
-DEFAULT_TOKEN_SCORES_DIR = str(PROJECT_ROOT / "glimpse_qwen_eval" / "token_scores" / "gqa_rand_seed42_20000")
+DEFAULT_OUTPUT_JSONL = str(PROJECT_ROOT / "robustpruner_qwen_eval" / "gqa_rand_seed42_20000_predictions.jsonl")
+DEFAULT_TOKEN_SCORES_DIR = str(PROJECT_ROOT / "robustpruner_qwen_eval" / "token_scores" / "gqa_rand_seed42_20000")
 DEFAULT_IMAGE_ROOT = str(PROJECT_ROOT / "datas" / "cot" / "gqa")
 
 
