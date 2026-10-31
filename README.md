@@ -94,14 +94,14 @@ By default, this script uses:
 
 - `input-jsonl`: `/RobustPruner_2026/RobustPruner/uncertainty_dataset_construction/gqa_rand_seed42_20000.jsonl`
 - `image-root`: `/RobustPruner_2026/RobustPruner/datas/cot/gqa`
-- `output-jsonl`: `/RobustPruner_2026/RobustPruner/glimpse_qwen_eval/gqa_rand_seed42_20000_predictions.jsonl`
+- `output-jsonl`: `/RobustPruner_2026/RobustPruner/robustpruner_qwen_eval/gqa_rand_seed42_20000_predictions.jsonl`
 
 The output structure looks like this:
 
 ```bash
 RobustPruner_2026/
 └── RobustPruner/
-    └── glimpse_qwen_eval/
+    └── robustpruner_qwen_eval/
         ├── gqa_rand_seed42_20000_predictions.jsonl
         └── token_scores/
             └── gqa_rand_seed42_20000/
@@ -114,7 +114,7 @@ RobustPruner_2026/
 After the token scores are ready, open `gqa_layer_qwen_similarity.ipynb`. This notebook is used to build attention-based uncertainty and similarity-based uncertainty, and to visualize layer-wise attention and similarity behavior. Run the notebook step by step. The final output will be written to:
 
 ```bash
-/RobustPruner_2026/RobustPruner/glimpse_qwen_eval/token_scores/layer12_token_stats_per_doc
+/RobustPruner_2026/RobustPruner/robustpruner_qwen_eval/token_scores/layer12_token_stats_per_doc
 ```
 
 #### 4.2 Training
