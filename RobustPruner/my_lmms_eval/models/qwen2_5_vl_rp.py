@@ -239,7 +239,7 @@ class Qwen2_5_VL_GP(lmms):
                         if task_name in self._task_doc_to_text_cache:
                             return self._task_doc_to_text_cache[task_name]
 
-                        tasks_root = Path("/home/fjh/VisionSelector/lmms-eval/lmms_eval/tasks")
+                        tasks_root = Path("/RobustPruner_2026/RobustPruner_lmm_eval/lmms-eval/lmms_eval/tasks")
                         task_dir = tasks_root / task_name
 
                         candidates = [
