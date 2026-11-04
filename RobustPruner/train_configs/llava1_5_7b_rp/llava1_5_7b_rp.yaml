@@ -1,4 +1,4 @@
-model_name_or_path: /mnt/nvme/fjh/llava-v1.5-7b
+model_name_or_path: /path/to/llava-v1.5-7b
 train_dataset: dataset_configs/gqa_rand_seed42_20000_uncertainty_llava_ov.yaml
 loc_loss_class: MaskLoss
 loc_dice_weight: 1.0
