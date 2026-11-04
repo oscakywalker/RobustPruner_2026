@@ -1,4 +1,4 @@
-model_name_or_path: /mnt/nvme/fjh/models--lmms-lab--LLaVA-OneVision-1.5-8B-Instruct/snapshots/bdf95183e0f91549cc71820b12d920b1a63689a2
+model_name_or_path: /path/to/LLaVA-OneVision-1.5-8B-Instruct
 train_dataset: dataset_configs/gqa_rand_seed42_20000_uncertainty_llava_ov.yaml
 loc_loss_class: MaskLoss
 loc_dice_weight: 1.0
