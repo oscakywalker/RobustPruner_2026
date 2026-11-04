@@ -53,8 +53,8 @@ class LlavaLlamaGP(lmms):
 
     def __init__(
         self,
-        pretrained: str = "/mnt/nvme/fjh/llava-v1.5-7b",
-        new_modules_dir: str = "/mnt/nvme/fjh/GlimpsePrune_LLaVA-1.5-7B",
+        pretrained: str = "/path/to/llava-v1.5-7b",
+        new_modules_dir: str = "/path/to/robustpruner_checkpoint",
         device: Optional[str] = "cuda",
         device_map: Optional[str] = "auto",
         batch_size: Optional[Union[int, str]] = 1,
