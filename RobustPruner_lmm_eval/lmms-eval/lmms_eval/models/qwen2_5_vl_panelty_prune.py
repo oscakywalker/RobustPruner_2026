@@ -269,7 +269,7 @@ class Qwen2_5_VL_PaneltyPrune(lmms):
         self.variance_penalty = variance_penalty
         
         # Build the six input directory paths.
-        ROOT = Path("/mnt/nvme/fjh/qwen-evaluation")
+        ROOT = Path("/RobustPruner_2026/RobustPruner_lmm_eval/evaluation/result/qwen-evaluation")
         ratio_str = f"{base_ratio:.1f}" if isinstance(base_ratio, float) else base_ratio
         base_path = ROOT / "visualization_text_perturb/gqa/text_perturb" / ratio_str
         

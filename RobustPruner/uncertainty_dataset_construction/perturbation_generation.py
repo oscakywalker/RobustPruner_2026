@@ -144,12 +144,12 @@ def main() -> None:
     parser.add_argument(
         "--input-jsonl",
         type=str,
-        default="/home/fjh/GlimpsePrune_2/uncertainty_dataset_construction/gqa_rand_seed42_20000.jsonl",
+        default="/RobustPruner_2026/RobustPruner/uncertainty_dataset_construction/gqa_rand_seed42_20000.jsonl",
     )
     parser.add_argument(
         "--output-dir",
         type=str,
-        default="/home/fjh/GlimpsePrune_2/uncertainty_dataset_construction",
+        default="/RobustPruner_2026/RobustPruner/uncertainty_dataset_construction",
     )
     parser.add_argument("--model", type=str, default="qwen3-vl-plus-2025-09-23")
     parser.add_argument("--save-every", type=int, default=20)

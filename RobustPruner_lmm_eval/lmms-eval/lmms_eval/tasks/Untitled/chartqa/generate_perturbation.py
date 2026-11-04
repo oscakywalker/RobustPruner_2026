@@ -13,7 +13,7 @@ client = OpenAI(
 )
 
 # Output file path.
-OUTPUT_FILE = "/home/fjh/VisionSelector/lmms-eval/lmms_eval/tasks/chartqa/text_perturbations_4.json"
+OUTPUT_FILE = "/RobustPruner_2026/RobustPruner_lmm_eval/lmms-eval/lmms_eval/tasks/chartqa/text_perturbations_4.json"
 
 def perturb_question(question):
     """Use the API to rewrite a question with synonymous wording."""

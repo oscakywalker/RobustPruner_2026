@@ -37,7 +37,7 @@ METHODS=(
 BUDGETS=(0.1 0.2 0.3)
 
 # model path
-MODEL_PATH="${MODEL_PATH:-/mnt/nvme/fjh/Qwen2.5-VL-7B-Instruct}"
+MODEL_PATH="${MODEL_PATH:-/path/to/Qwen2.5-VL-7B-Instruct}"
 MODEL_NAME="qwen25vl_7b"
 
 TASKS=("realworldqa" "vstar_bench")

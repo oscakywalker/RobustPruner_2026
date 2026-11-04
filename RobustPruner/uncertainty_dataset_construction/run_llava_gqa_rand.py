@@ -18,7 +18,7 @@ from llava.model.builder import load_pretrained_model
 from llava.mm_utils import process_images, tokenizer_image_token
 from llava.utils import disable_torch_init
 
-GLIMPSE_LLAVA_BASE = "/mnt/nvme/fjh/glimpse_llava_eval"
+GLIMPSE_LLAVA_BASE = "/RobustPruner_2026/RobustPruner/robustpruner_llava_eval"
 JSONL_FILENAME = "gqa_rand_seed42_20000_predictions.jsonl"
 SCORES_SUBDIR = "token_scores/gqa_rand_seed42_20000"
 
@@ -153,18 +153,18 @@ def main() -> None:
     parser.add_argument(
         "--input-jsonl",
         type=str,
-        default="/home/fjh/GlimpsePrune_2/uncertainty_dataset_construction/gqa_rand_seed42_20000.jsonl",
+        default="/RobustPruner_2026/RobustPruner/uncertainty_dataset_construction/gqa_rand_seed42_20000.jsonl",
     )
     parser.add_argument(
         "--image-root",
         type=str,
-        default="/mnt/nvme/fjh/datasets/Visual-CoT/cot/cot_image_data/gqa",
+        default="/RobustPruner_2026/RobustPruner/datas/cot/gqa",
     )
     parser.add_argument("--output-jsonl", type=str, default=None,
                         help="Override output JSONL path (auto-derived from model name if omitted).")
     parser.add_argument("--token-scores-dir", type=str, default=None,
                         help="Override token scores dir (auto-derived from model name if omitted).")
-    parser.add_argument("--model", type=str, default="/mnt/nvme/fjh/llava-v1.5-7b")
+    parser.add_argument("--model", type=str, default="/path/to/llava-v1.5-7b")
     parser.add_argument("--model-base", type=str, default=None)
     parser.add_argument("--model-name", type=str, default=None,
                         help="Model name hint for load_pretrained_model (e.g. 'llava-v1.5-7b').")

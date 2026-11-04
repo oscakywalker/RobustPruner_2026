@@ -17,13 +17,12 @@ try:
 except ImportError:
     _HAS_QWEN_VL_UTILS = False
 
-GLIMPSE_LLAVA_BASE = "/mnt/nvme/fjh/glimpse_llava_ov_eval"
+GLIMPSE_LLAVA_BASE = "/RobustPruner_2026/RobustPruner/robustpruner_llava_ov_eval"
 JSONL_FILENAME = "gqa_rand_seed42_20000_predictions.jsonl"
 SCORES_SUBDIR = "token_scores/gqa_rand_seed42_20000"
 
 DEFAULT_MODEL_PATH = (
-    "/mnt/nvme/fjh/models--lmms-lab--LLaVA-OneVision-1.5-8B-Instruct"
-    "/snapshots/bdf95183e0f91549cc71820b12d920b1a63689a2"
+    "/path/to/LLaVA-OneVision-1.5-8B-Instruct"
 )
 DEFAULT_INPUT_JSONL = str(Path(__file__).parent / "gqa_rand_seed42_20000.jsonl")
 
@@ -368,7 +367,7 @@ def main() -> None:
     parser.add_argument(
         "--image-root",
         type=str,
-        default="/mnt/nvme/fjh/datasets/Visual-CoT/cot/cot_image_data/gqa",
+        default="/RobustPruner_2026/RobustPruner/datas/cot/gqa",
     )
     parser.add_argument("--model", type=str, default=DEFAULT_MODEL_PATH)
     parser.add_argument("--model-name", type=str, default=None,

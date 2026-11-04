@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 from statistics import mean
 
-ROOT = Path("/mnt/nvme/fjh/qwen-evaluation")
+ROOT = Path("/RobustPruner_2026/RobustPruner_lmm_eval/evaluation/result/qwen-evaluation")
 
 INPUT_DIRS = [
     ROOT / "visualization_text_perturb/gqa/text_perturb/0.3/qwen25vl_7b_glimpse_0.3_text_perturbations_0/token_scores",

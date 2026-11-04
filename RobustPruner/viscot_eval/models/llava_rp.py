@@ -18,7 +18,7 @@ def _candidate_gp_impl_roots(explicit_root):
     if env_root:
         yield Path(env_root).expanduser()
 
-    yield Path("/home/fjh/GlimpsePrune_2")
+    yield Path(__file__).resolve().parents[2]
 
 
 def _resolve_gp_impl_root(explicit_root):

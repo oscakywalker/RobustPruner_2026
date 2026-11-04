@@ -306,7 +306,7 @@ def main() -> None:
         type=str,
         default=DEFAULT_TOKEN_SCORES_DIR,
     )
-    parser.add_argument("--model", type=str, default="/mnt/nvme/fjh/Qwen2.5-VL-7B-Instruct")
+    parser.add_argument("--model", type=str, default="/path/to/Qwen2.5-VL-7B-Instruct")
     parser.add_argument("--max-new-tokens", type=int, default=8)
     parser.add_argument("--attn-implementation", type=str, default="flash_attention_2")
     parser.add_argument("--save-token-scores", action="store_true")

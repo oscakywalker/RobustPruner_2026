@@ -273,7 +273,7 @@ class LLaVA_v1_5_PaneltyPrune(lmms):
         self.conv_template = conv_template
         
         # Build the input directory paths; adjust them for your environment.
-        ROOT = Path("/mnt/nvme/fjh/llava-evaluation")
+        ROOT = Path("/RobustPruner_2026/RobustPruner_lmm_eval/evaluation/result/llava-evaluation")
         ratio_str = f"{base_ratio:.1f}" if isinstance(base_ratio, float) else base_ratio
         base_path = ROOT / "visualization_text_perturb/gqa/text_perturb" / ratio_str
         

@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from statistics import mean
 
-ROOT = Path("/mnt/nvme/fjh/llava-evaluation")
+ROOT = Path("/RobustPruner_2026/RobustPruner_lmm_eval/evaluation/result/llava-evaluation")
 
 INPUT_DIRS = [
     ROOT / "visualization_text_perturb/gqa/text_perturb/0.1/vscan_with_stage_2_penalty/alpha_0.0/llava_v1_5_7b_vscan_text_perturbations_0/token_scores",

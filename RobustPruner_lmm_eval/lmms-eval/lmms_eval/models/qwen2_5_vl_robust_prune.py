@@ -272,7 +272,7 @@ class Qwen2_5_VL_RobustPrune(lmms):
         self.final_keep_ratio = top_avg_ratio * stable_ratio
         
         # Build the six input directory paths.
-        ROOT = Path("/mnt/nvme/fjh/qwen-evaluation")
+        ROOT = Path("/RobustPruner_2026/RobustPruner_lmm_eval/evaluation/result/qwen-evaluation")
         ratio_str = f"{base_ratio:.1f}" if isinstance(base_ratio, float) else base_ratio
         base_path = ROOT / "visualization_text_perturb/chartqa/text_perturb" / ratio_str
         

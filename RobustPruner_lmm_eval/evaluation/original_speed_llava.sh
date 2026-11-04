@@ -3,14 +3,22 @@
 ###########################################
 # Load my_lmms_eval plugin (CRITICAL)
 ###########################################
-export PYTHONPATH="/home/fjh/VisionSelector/lmms-eval:/home/fjh/GlimpsePrune/llava_vscan:/home/fjh/GlimpsePrune:$PYTHONPATH"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+ROBUSTPRUNER_ROOT="${REPO_ROOT}/RobustPruner"
+LMMS_EVAL_ROOT="${REPO_ROOT}/RobustPruner_lmm_eval/lmms-eval"
+export PYTHONPATH="${LMMS_EVAL_ROOT}:${ROBUSTPRUNER_ROOT}:${PYTHONPATH:-}"
+# Optionally provide an external VSCAN implementation that registers llava_vscan_execution.
+if [[ -n "${VSCAN_IMPL_ROOT:-}" ]]; then
+    export PYTHONPATH="${VSCAN_IMPL_ROOT}:${PYTHONPATH}"
+fi
 export LMMS_EVAL_PLUGINS="my_lmms_eval"
 export PYTHONNOUSERSITE=1
 
 ###########################################
 # (Recommended) run from lmms-eval root
 ###########################################
-cd /home/fjh/VisionSelector/lmms-eval || exit 1
+cd "${LMMS_EVAL_ROOT}" || exit 1
 
 ###########################################
 # Detect GPU Count
@@ -25,7 +33,7 @@ echo "GPUs detected: $ngpus"
 ###########################################
 # Auto-detect perturbations version from GQA utils.py
 ###########################################
-UTILS_PATH="/home/fjh/VisionSelector/lmms-eval/lmms_eval/tasks/gqa/utils.py"
+UTILS_PATH="${LMMS_EVAL_ROOT}/lmms_eval/tasks/gqa/utils.py"
 if [[ ! -f "$UTILS_PATH" ]]; then
     echo "WARNING: utils.py not found at $UTILS_PATH"
     echo "Using default: text_perturbations_0"
@@ -47,11 +55,11 @@ fi
 set -e
 
 # VSCAN model path.
-MODEL_PATH="/mnt/nvme/fjh/llava-v1.5-7b"
+MODEL_PATH="${MODEL_PATH:-/path/to/llava-v1.5-7b}"
 MODEL_NAME="llava_v1_5_7b"
 
 # Output root directory.
-ROOT_DIR="/mnt/nvme/fjh/llava-evaluation/vscan_ablation_results"
+ROOT_DIR="${ROOT_DIR:-${SCRIPT_DIR}/result/llava-evaluation/vscan_ablation_results}"
 
 # Task configuration.
 #TASKS=("gqa" "mme" "ai2d" "vizwiz_vqa")
